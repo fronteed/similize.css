@@ -1,0 +1,1451 @@
+// Similize.css v1.0.1, http://git.io/vfNuG
+// ========================================
+// Similizes browser CSS defaults across desktop and mobile devices
+//
+// (c) Damir Sultanov and contributors
+// http://similize.fronteed.com/
+// MIT Licensed
+
+
+// ==============================
+// VARIABLES
+// All values are defaults and therefore can easily be overridden
+// ==============================
+
+
+// Output settings
+// _______________
+
+// Output main CSS code (or use `s-main()` mixin)
+$s-main: true !default
+
+// Output CSS helper classes (or use `s-helpers()` mixin)
+$s-helpers: true !default
+
+// Output print CSS (or use `s-print()` mixin)
+$s-print: true !default
+
+
+// Browser support
+// _______________
+
+// Add vendor prefixes or keep clean
+// (IE >= 9, Chrome >= 20, Safari >= 6, FF >= 20, Opera >= 15, Android >= 4, BB >= 10, iOS >= 6)
+$s-prefixes: false !default
+
+// Legacy browsers support
+// (IE < 9, Chrome < 20, Safari < 6, FF < 20, Opera < 15, Android < 4, BB < 10, iOS < 6)
+$s-legacy: false !default
+
+
+// Global settings
+// _______________
+
+// Add definitions for HTML5 elements ($s-tags-html5 elements)
+$s-html5: true !default
+
+// Set a more intuitive `border-box` layout model
+$s-sizing: true !default
+
+// Reset `margin` and `padding` for a limited scope of elements ($s-tags-reset)
+$s-reset: true !default
+
+// Unset `list-style` for the list elements
+$s-list-reset: true !default
+
+// Set text selection styling (also removes `text-shadow` in selection highlight)
+$s-selection-color: false !default
+$s-selection-background: #b3d4fc !default
+
+// Keep `outline` on focused elements (opinionated)
+// (it's always square and therefore looks horrid on rounded elements)
+$s-highlight: false !default
+
+// Keep tapping highlight on mobile devices (recommended)
+$s-highlight-mobile: true !default
+
+// Keep text clearing buttons inside <input>
+$s-form-clear: false !default
+
+// Keep increase/decrease arrows inside <input>
+$s-form-arrows: false !default
+
+// Set placeholder color (also fixes color fading in Firefox)
+$s-form-placeholder: #aaa !default
+
+// Hide placeholder on focused element
+$s-form-placeholder-hide: false !default
+
+
+// Font stacks with fallbacks
+// --------------------------
+$s-serif: Georgia, Times, 'Times New Roman', serif !default
+$s-sans: Arial, Helvetica, sans-serif !default
+$s-sans-serif: $s-sans !default
+
+
+// Customization settings
+// ----------------------
+// You can style CSS properties using $s-tag-property (like $s-html-height) variables
+// All the values are null by default
+// Supported tags:
+//   html
+//   body
+//   a
+//   strong (b)
+//   em (i)
+//   small
+//   mark
+//   hr
+//   img
+//   h1
+//   h2
+//   h3
+//   h4
+//   h5
+//   h6
+//   blockquote
+//   q
+//   p
+//   code
+//   ol
+//   ul
+//   li
+//   table
+//   td
+//   th
+//   form
+//   fieldset
+//   legend
+//   label
+//   button ($s-tags-button - all <button> by default [s-button() mixin])
+//   button-custom ($s-tags-button-custom - all <button>, including input[type=button, reset, submit] by default [s-button-custom() mixin])
+//   input ($s-tags-input - all <input> by default [s-input() mixin])
+//   input-custom ($s-tags-input-custom - all <input>, except input[type=button, reset, submit, color, image, file, checkbox, radio] by default [s-input-custom() mixin])
+//   input-choice ($s-tags-input-choice - input[type=checkbox, radio] by default [s-input-choice() mixin])
+//   input-color ($s-tags-input-color - input[type=color] by default [s-input-color() mixin])
+//   input-date ($s-tags-input-date - input[type=date, datetime-local, time, month, week] by default [s-input-date() mixin])
+//   input-file ($s-tags-input-file - input[type=file] by default [s-input-file() mixin])
+//   input-image ($s-tags-input-image - input[type=image] by default [s-input-image() mixin])
+//   input-list ($s-tags-input-list - input[list] by default [s-input-list() mixin])
+//   input-number ($s-tags-input-number - input[type=number] by default [s-input-number() mixin])
+//   input-range ($s-tags-input-range - input[type=range] by default [s-input-range() mixin])
+//   input-text ($s-tags-input-text - input[type=text, password, email, search, tel, url] by default [s-input-text() mixin])
+//   select ($s-tags-select - all <select> by default [s-select() mixin])
+//   select-multiple ($s-tags-select-multiple - <select[multiple]> by default [s-select-multiple() mixin])
+//   textarea ($s-tags-textarea - all <textarea> by default [s-textarea() mixin])
+// Supported properties:
+//   position
+//   display
+//   visibility
+//   clear
+//   list-style
+//   float
+//   width, min-width, max-width
+//   height, min-height, max-height
+//   margin
+//   padding
+//   overflow, overflow-x, overflow-y
+//   vertical-align
+//   table-layout
+//   font, font-family, font-size, fony-style, font-weight
+//   color
+//   letter-spacing
+//   line-height
+//   text-align, text-decoration, text-indent, text-shadow, text-transform
+//   white-space
+//   background, background-color
+//   box-shadow
+//   border, border-color, border-style border-width, border-radius, border-collapse border-spacing
+//   transition
+//   transform
+//   animation
+//   opacity
+//   cursor
+// ________________
+
+// <html>
+// Stretch document to window's viewport
+$s-html-height: 100% !default
+
+// <body>
+// Similize text styling
+$s-body-font: 15px/1.4 sans-serif !default
+$s-body-color: #000 !default
+// Prevent unexpected `background` on custom OS themes
+$s-body-background: #fff !default
+// Stretch <body> to window's viewport
+$s-body-height: 100% !default
+
+// <a>nchor
+$s-a-color: #00e !default
+// Remove the gray background color from active links in IE 10
+$s-a-background-color: transparent !default
+// Prevent pointer cursor disappearing in Webkit browsers
+$s-a-cursor: pointer !default
+
+// <img>
+// Prevent image overlapping outside the container
+$s-img-max-width: 100% !default
+$s-img-vertical-align: middle !default
+
+// <strong> and <b>
+// Correct a `bolder` style in Firefox 4+, Safari and Chrome
+$s-strong-font-weight: bold !default
+
+// <em> and <i>
+// Add the correct font style
+$s-em-font-style: italic !default
+
+// <small>
+// Similize inconsistent `font-size`
+$s-small-font-size: 80% !default
+
+// <mark>
+// Add default styling for IE 8/9
+$s-mark-color: #000 !default
+$s-mark-background: #ff0 !default
+
+// <hr>
+// Similize styling across devices
+$s-hr-height: 1px !default
+$s-hr-font: 0 / 0 none !default
+$s-hr-background: #ddd !default
+
+// <code>
+// Similize text styling
+$s-code-font: 14px/1.4 monospace !default
+
+// <table>
+// Expand table to full width of container
+$s-table-width: 100% !default
+// Remove spacing between table cells
+$s-table-border-collapse: collapse !default
+$s-table-border-spacing: 0 !default
+
+// <label>
+$s-label-vertical-align: middle !default
+$s-label-cursor: pointer !default
+
+// <button> ($s-tags-button - all <button> by default [s-button() mixin])
+$s-button-vertical-align: middle !default
+// Correct `overflow` in IE 8-11
+$s-button-overflow: visible !default
+// Inherit font properties from parent (opinionated)
+$s-button-font: inherit !default
+// Reset line-height (opinionated)
+$s-button-line-height: normal !default
+// Similize inconsistent `text-transform` inheritance
+$s-button-text-transform: none !default
+
+// <button-custom> ($s-tags-button-custom - all <button>, including input[type=button, reset, submit] by default [s-button-custom() mixin])
+$s-button-custom-padding: 5px !default
+$s-button-custom-background: #ddd !default
+$s-button-custom-border: 1px solid #ccc !default
+$s-button-custom-border-radius: 0 !default
+$s-button-custom-cursor: pointer !default
+
+// <input> ($s-tags-input - all <input> by default [s-input() mixin])
+$s-input-vertical-align: middle !default
+// Inherit font properties from parent (opinionated)
+$s-input-font: inherit !default
+// Reset line-height (opinionated)
+$s-input-line-height: normal !default
+
+// <input-custom> ($s-tags-input-custom - all <input>, except input[type=button, reset, submit, color, image, file, checkbox, radio] by default [s-input-custom() mixin])
+$s-input-custom-padding: 5px !default
+$s-input-custom-background: none !default
+$s-input-custom-border: 1px solid #ccc !default
+
+// <input-color> ($s-tags-input-color - input[type=color] by default [s-input-color() mixin])
+$s-input-color-border: none !default
+
+// <input-date> ($s-tags-input-date - input[type=date, datetime-local, time, month, week] by default [s-input-date() mixin])
+$s-input-date-border-radius: 0 !default
+
+// <input-file> ($s-tags-input-file - input[type=file] by default [s-input-file() mixin])
+$s-input-file-cursor: pointer !default
+
+// <input-number> ($s-tags-input-number - input[type=number] by default [s-input-number() mixin])
+$s-input-number-border-radius: 0 !default
+
+// <input-text> ($s-tags-input-text - input[type=text, password, email, search, tel, url] by default [s-input-text() mixin])
+$s-input-text-border-radius: 0 !default
+
+// <select> ($s-tags-select - all <select> by default [s-select() mixin])
+$s-select-padding: 5px !default
+$s-select-vertical-align: middle !default
+// Inherit font properties from parent (opinionated)
+$s-select-font: inherit !default
+// Reset line-height (opinionated)
+$s-select-line-height: normal !default
+// Similize inconsistent `text-transform` inheritance
+$s-select-text-transform: none !default
+$s-select-border: 1px solid #ccc !default
+
+// <select[multiple]> ($s-tags-select-multiple - <select[multiple]> by default [s-select-multiple() mixin])
+// Allow multiline text
+$s-select-multiple-height: auto !default
+$s-select-multiple-vertical-align: top !default
+
+// <textarea> ($s-tags-textarea - all <textarea> by default [s-textarea() mixin])
+// Remove default vertical scrollbar in IE 8-11
+$s-textarea-padding: 5px !default
+$s-textarea-overflow: auto !default
+$s-textarea-vertical-align: top !default
+// Inherit font properties from parent (opinionated)
+$s-textarea-font: inherit !default
+// Reset line-height (opinionated)
+$s-textarea-line-height: normal !default
+$s-textarea-border: 1px solid #ccc !default
+$s-textarea-border-radius: 0 !default
+// Set resizing behavior (prevents textarea overlapping outside the parent by default)
+$s-textarea-resize: vertical !default
+
+
+// Media breakpoints
+// _________________
+
+$s-screen-narrow: 320px !default
+$s-screen-small: 480px !default
+$s-screen-medium: 768px !default
+$s-screen-large: 990px !default
+$s-screen-wide: 1200px !default
+
+
+// Tags lists
+// __________
+// (mixins are available by removing "tags-" from variable name)
+
+// HTML5 elements that should be processed
+$s-tags-html5: 'article, aside, main, section, details, summary, figure, figcaption, header, footer, nav, canvas, audio, video, progress' !default
+
+// Margin and padding are removed from these elements
+$s-tags-reset: 'body, dl, dt, dd, ol, ul, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, legend, p, blockquote, hr, th, td, button, input, select, textarea' !default
+
+// Form elements
+$s-tags-button: 'button' !default
+$s-tags-button-custom: $s-tags-button + ', input[type="button"], input[type="reset"], input[type="submit"]' !default
+$s-tags-input: 'input' !default
+$s-tags-input-html5: 'input[type="color"], input[type="date"], input[type="datetime-local"], input[type="email"], input[type="month"], input[type="number"], input[type="range"], input[type="search"], input[type="tel"], input[type="time"], input[type="url"], input[type="week"], input[list]' !default
+$s-tags-input-choice: 'input[type="checkbox"], input[type="radio"]' !default
+$s-tags-input-color: 'input[type="color"]' !default
+$s-tags-input-date: 'input[type="date"], input[type="datetime-local"], input[type="time"], input[type="month"], input[type="week"]' !default
+$s-tags-input-file: 'input[type="file"]' !default
+$s-tags-input-image: 'input[type="image"]' !default
+$s-tags-input-list: 'input[list]' !default
+$s-tags-input-number: 'input[type="number"]' !default
+$s-tags-input-range: 'input[type="range"]' !default
+$s-tags-input-text: 'input[type="text"], input[type="password"], input[type="email"], input[type="search"], input[type="tel"], input[type="url"]' !default
+$s-tags-input-custom: $s-tags-input-date + ', ' + $s-tags-input-text + ', ' + $s-tags-input-number + ', ' + $s-tags-input-range + ', ' + $s-tags-input-list !default
+$s-tags-select: 'select' !default
+$s-tags-select-multiple: 'select[multiple]' !default
+$s-tags-textarea: 'textarea' !default
+
+
+// Properties sorting order
+// ------------------------
+$s-properties: (position display visibility clear list-style float width min-width max-width height min-height max-height margin padding overflow overflow-x overflow-y vertical-align table-layout font font-family font-size font-style font-weight color letter-spacing line-height text-align text-decoration text-indent text-shadow text-transform white-space background background-color box-shadow border border-color border-style border-width border-radius border-collapse border-spacing transition transform animation opacity cursor) !default
+
+
+// ==============================
+// MIXINS
+// Feel free to use in your code for the style adjustments
+// ==============================
+
+
+// HTML Elements
+// _____________
+
+// $s-tags-html5 elements
+@mixin s-html5()
+  #{$s-tags-html5}
+    @content
+
+// $s-tags-reset elements
+@mixin s-reset()
+  $elements: $s-tags-reset
+
+  @if $s-html5 == true
+    @each $html5-tag in figure
+      @if index($s-tags-html5, $html5-tag)
+        $elements: append($elements, $html5-tag, "comma")
+
+  #{$elements}
+    @content
+
+// $s-tags-button elements
+@mixin s-button()
+  #{$s-tags-button}
+    @content
+
+// $s-tags-button-custom elements
+@mixin s-button-custom()
+  #{$s-tags-button-custom}
+    @content
+
+// $s-tags-input elements
+@mixin s-input()
+  #{$s-tags-input}
+    @content
+
+// $s-tags-input-custom elements
+@mixin s-input-custom()
+  $elements: ()
+
+  @each $element in $s-tags-input-custom
+    @if not $s-html5 == true
+      @if not index($s-tags-input-html5, $element)
+        $elements: append($elements, $element, "comma")
+    @else
+      $elements: append($elements, $element, "comma")
+
+  #{$elements}
+    @content
+
+// $s-tags-input-choice elements
+@mixin s-input-choice()
+  #{$s-tags-input-choice}
+    @content
+
+// $s-tags-input-color elements
+@mixin s-input-color()
+  #{$s-tags-input-color}
+    @content
+
+// $s-tags-input-date elements
+@mixin s-input-date()
+  #{$s-tags-input-date}
+    @content
+
+// $s-tags-input-file elements
+@mixin s-input-file()
+  #{$s-tags-input-file}
+    @content
+
+// $s-tags-input-image elements
+@mixin s-input-image()
+  #{$s-tags-input-image}
+    @content
+
+// $s-tags-input-list elements
+@mixin s-input-list()
+  #{$s-tags-input-list}
+    @content
+
+// $s-tags-input-number elements
+@mixin s-input-number()
+  #{$s-tags-input-number}
+    @content
+
+// $s-tags-input-range elements
+@mixin s-input-range()
+  #{$s-tags-input-range}
+    @content
+
+// $s-tags-input-text elements
+@mixin s-input-text()
+  $elements: ()
+
+  @each $element in $s-tags-input-text
+    @if not $s-html5 == true
+      @if not index($s-tags-input-html5, $element)
+        $elements: append($elements, $element, "comma")
+    @else
+      $elements: append($elements, $element, "comma")
+
+  #{$elements}
+    @content
+
+// $s-tags-select elements
+@mixin s-select()
+  #{$s-tags-select}
+    @content
+
+// $s-tags-select-multiple elements
+@mixin s-select-multiple()
+  #{$s-tags-select-multiple}
+    @content
+
+// $s-tags-textarea elements
+@mixin s-textarea()
+  #{$s-tags-textarea}
+    @content
+
+
+// Media queries
+// _____________
+
+// @media width and height queries
+@mixin s-media($arguments...)
+  $values: s-arguments($arguments)
+  $units: ()
+
+  @if length($values) > 0
+    @each $value in $values
+      $value: $value + ""
+      $array: ()
+      $append: false
+
+      @if index("min-width" "max-width" "min-height" "max-height", $value)
+        $dimension: "width"
+        $limit: "min"
+
+        @if str-index($value, "height")
+          $dimension: "height"
+        @if str-index($value, "max")
+          $limit: "max"
+
+        $array: map-merge($array, (dimension: $dimension))
+        $array: map-merge($array, (limit: $limit))
+      @else if index("width" "height", $value)
+        $array: map-merge($array, (dimension: $value))
+      @else if index("min" "max", $value)
+        $array: map-merge($array, (limit: $value))
+      @else if index("narrow" "small" "medium" "large" "wide", $value)
+        @if $value == "narrow"
+          $value: $s-screen-narrow
+        @else if $value == "small"
+          $value: $s-screen-small
+        @else if $value == "medium"
+          $value: $s-screen-medium
+        @else if $value == "large"
+          $value: $s-screen-large
+        @else if $value == "wide"
+          $value: $s-screen-wide
+        $array: map-merge($array, (unit: s-unit($value)))
+      @else if s-number($value)
+        $array: map-merge($array, (unit: s-unit($value)))
+
+      @if length(map-keys($array)) > 0
+        @if length($units) > 0
+          @for $index from 1 through length($units)
+            $unit: nth($units, $index)
+            $replace: false
+
+            @if map-has-key($array, "unit")
+              @if map-has-key($unit, "unit")
+                $append: true
+              @else
+                $replace: true
+                $append: false
+            @else
+              $continue: true
+
+              @if length($units) > $index
+                $unitNext: nth($units, $index + 1)
+                @if map-has-key($unitNext, "unit")
+                  $continue: false
+
+              @if $continue
+                @if map-has-key($array, "dimension")
+                  @if map-has-key($unit, "dimension")
+                    $append: true
+                  @else
+                    $replace: true
+                    $append: false
+                @else if map-has-key($array, "limit")
+                  @if map-has-key($unit, "limit")
+                    $append: true
+                  @else
+                    $replace: true
+                    $append: false
+            @if $replace
+              $unit: map-merge($unit, $array)
+              $units: s-replace($units, $index, $unit)
+          @if $append
+            $units: append($units, $array)
+        @else
+          $units: append($units, $array)
+
+    @if length($units) > 0
+      @for $index from 1 through length($units)
+        $unit: nth($units, $index)
+        $replace: false
+
+        @if not map-has-key($unit, "dimension")
+          $unit: map-merge($unit, (dimension: "width"))
+          $replace: true
+        @if not map-has-key($unit, "limit")
+          $unit: map-merge($unit, (limit: "max"))
+          $replace: true
+        @if $replace
+          $units: s-replace($units, $index, $unit)
+
+      // query container
+      $query: ""
+
+      @for $index from 1 through length($units)
+        $unit: nth($units, $index)
+
+        @if map-has-key($unit, "unit")
+          $dimension: map-get($unit, "dimension")
+          $limit: map-get($unit, "limit")
+          $unit: map-get($unit, "unit")
+
+          @if $index == 1
+            $query: $query + "(#{$limit}-#{$dimension}: #{$unit})"
+          @else
+            $query: $query + " and (#{$limit}-#{$dimension}: #{$unit})"
+
+      @if str-length($query) > 0
+        @media #{$query}
+          @content
+
+// Abbreviations for s-media()
+@mixin s-breakpoint($arguments...)
+  @include s-media($arguments)
+    @content
+@mixin s-screen($arguments...)
+  @include s-media($arguments)
+    @content
+@mixin s-max($arguments...)
+  @include s-media(append(s-arguments($arguments), "max"))
+    @content
+@mixin s-min($arguments...)
+  @include s-media(append(s-arguments($arguments), "min"))
+    @content
+@mixin s-narrow($arguments...)
+  @include s-media(append(s-arguments($arguments), $s-screen-narrow))
+    @content
+@mixin s-small($arguments...)
+  @include s-media(append(s-arguments($arguments), $s-screen-small))
+    @content
+@mixin s-medium($arguments...)
+  @include s-media(append(s-arguments($arguments), $s-screen-medium))
+    @content
+@mixin s-large($arguments...)
+  @include s-media(append(s-arguments($arguments), $s-screen-large))
+    @content
+@mixin s-wide($arguments...)
+  @include s-media(append(s-arguments($arguments), $s-screen-wide))
+    @content
+
+// HiDPI screens
+@mixin s-retina($arguments...)
+  @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi)
+    @content
+@mixin s-hidpi($arguments...)
+  @include s-retina($arguments...)
+    @content
+
+
+// Helpers
+// _______
+
+// Clearfix
+@mixin s-clearfix()
+  @if $s-legacy == true
+    *zoom: 1
+    &:before,
+    &:after
+      content: ''
+      display: table
+    &:after
+      clear: both
+  @else
+    &:after
+      content: ''
+      display: table
+      clear: both
+
+@mixin s-clear($arguments...)
+  @include s-clearfix($arguments...)
+
+%s-clearfix
+  @include s-clearfix()
+
+%s-clear
+  @include s-clearfix()
+
+
+// Base
+@mixin s-main()
+  /* Similize.css v0.0.1, http://git.io/vfNuG */
+
+  // Reset default `margin` and `padding`
+  @if $s-reset == true
+    @include s-reset()
+      margin: 0
+      padding: 0
+
+  html
+    @include s-values(html)
+
+    // Prevent iOS/IE text size adjustment after orientation change
+    @if $s-prefixes == true
+      -webkit-text-size-adjust: 100%
+      @if $s-legacy == true
+        -ms-text-size-adjust: 100% // Windows Phone 8
+    text-size-adjust: 100%
+
+    // Unset tapping highlight on mobile devices
+    @if $s-highlight-mobile == false
+      -webkit-focus-ring-color: rgba(0,0,0,0)
+      -webkit-tap-highlight-color: rgba(0,0,0,0)
+
+    // Set a more intuitive `border-box` layout model
+    @if $s-sizing == true
+      @if $s-prefixes == true or $s-legacy == true
+        @if $s-legacy == true
+          -webkit-box-sizing: border-box
+        -moz-box-sizing: border-box
+      box-sizing: border-box
+
+  // Allow `border-box` inheritance
+  @if $s-sizing == true
+    *, *:before, *:after
+      @if $s-prefixes == true or $s-legacy == true
+        @if $s-legacy == true
+          -webkit-box-sizing: inherit
+        -moz-box-sizing: inherit
+      box-sizing: inherit
+
+  body
+    @include s-values(body)
+
+  @if $s-html5 == true
+    @include s-html5()
+      // Similize `display` property of the HTML5 elements
+      display: block
+
+    audio:not([controls])
+      // Prevent `audio` from displaying without controls
+      display: none
+
+      // Remove excess height in iOS 5 devices
+      @if $s-legacy == true
+        height: 0
+
+  // Correct overflow for IE 9-11
+  svg:not(:root)
+    overflow: hidden
+
+  @if $s-html5 == true
+    // Prevent `[hidden]` and `template` from being displayed in IE 8-11, Safari and Firefox < 22
+    [hidden], template
+      display: none
+
+  // Keep `outline` on focused elements
+  @if $s-highlight == false
+    @include s-point("active", "focus")
+      outline: none
+
+  a
+    @include s-values(a)
+
+    // Unset gaps in links underline in iOS 8+ and Safari 8+
+    -webkit-text-decoration-skip: objects
+
+  // Correct styling present in IE 8-11, Safari and Chrome
+  abbr[title]
+    border-bottom: 1px dotted
+    text-decoration: none
+
+  // Similize styling across devices
+  dfn, address
+    font-style: normal
+
+  ins
+    text-decoration: none
+
+  // Similize inconsistent styling across browsers
+  strong, b
+    @include s-values(strong)
+  em, i
+    @include s-values(em)
+  small
+    @include s-values(small)
+  mark
+    @include s-values(mark)
+
+  // Prevent from affecting `line-height` across browsers
+  sub, sup
+    position: relative
+    font-size: 75%
+    line-height: 0
+    vertical-align: baseline
+
+  sup
+    top: -0.5em
+
+  sub
+    bottom: -0.25em
+
+  // Similize inconsistent styling
+  pre
+    overflow: auto
+    white-space: pre
+    white-space: pre-wrap
+    word-wrap: break-word
+
+  // Correct inconsistent `font` styling
+  code, kbd, pre, samp
+    @include s-values(code)
+
+  // Remove inappropriate `border`
+  hr, img, fieldset, legend, iframe, object
+    border: 0
+
+  // Unset `list-style` for the list elements
+  @if $s-list-reset == true
+    ol, ul
+      list-style: none
+
+  // Similize styling across browsers
+  h1
+    @include s-values(h1)
+  h2
+    @include s-values(h2)
+  h3
+    @include s-values(h3)
+  h4
+    @include s-values(h4)
+  h5
+    @include s-values(h5)
+  h6
+    @include s-values(h6)
+
+  blockquote
+    @include s-values(blockquote)
+  q
+    @include s-values(q)
+  p
+    @include s-values(p)
+
+  hr
+    @include s-values(hr)
+  img
+    @include s-values(img)
+
+  ol
+    @include s-values(ol)
+  ul
+    @include s-values(ul)
+  li
+    @include s-values(li)
+
+  table
+    @include s-values(table)
+  td
+    @include s-values(td)
+  th
+    @include s-values(th)
+
+  form
+    @include s-values(form)
+  fieldset
+    @include s-values(fieldset)
+  legend
+    @include s-values(legend)
+  label
+    @include s-values(label)
+
+  // Reset default `cursor` for disabled elements
+  button[disabled], input[disabled], select[disabled], textarea[disabled]
+    cursor: default !important
+
+  // Unset inner `padding` and `border` in Firefox 4+
+  ::-moz-focus-inner
+    padding: 0
+    border: 0
+
+  // Remove text clearing buttons inside form elements in IE10+
+  @if $s-form-clear == false
+    ::-ms-clear
+      display: none
+
+  // <button> ($s-tags-button)
+  @include s-button()
+    @include s-values(button)
+
+  // <button-custom> ($s-tags-button-custom)
+  @include s-button-custom()
+    @include s-values(button-custom)
+
+    // Similize styling across devices
+    -webkit-appearance: none
+
+  // <input> ($s-tags-input)
+  @include s-input()
+    @include s-values(input)
+
+    @if $s-form-clear == false
+      &::-webkit-clear-button,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-decoration
+        display: none
+
+    @if $s-form-arrows == false
+      &::-webkit-inner-spin-button
+        display: none
+
+    &::-webkit-datetime-edit-fields-wrapper,
+    &::-webkit-calendar-picker-indicator
+      padding: 0
+
+  // <input-custom> ($s-tags-input-custom)
+  @include s-input-custom()
+    @include s-values(input-custom)
+
+  // <input-choice> ($s-tags-input-choice)
+  @include s-input-choice()
+    @include s-values(input-choice)
+
+    @if not $s-sizing == true
+      @if $s-prefixes == true or $s-legacy == true
+        @if $s-legacy == true
+          -webkit-box-sizing: border-box
+        -moz-box-sizing: border-box
+      box-sizing: border-box
+
+  // <input-color> ($s-tags-input-color)
+  @include s-input-color()
+    @include s-values(input-color)
+
+    &::-webkit-color-swatch-wrapper
+      padding: 0
+
+    &::-webkit-color-swatch
+      height: inherit
+      border: 0
+
+  // <input-date> ($s-tags-input-date)
+  @include s-input-date()
+    @include s-values(input-date)
+
+  // <input-file> ($s-tags-input-file)
+  @include s-input-file()
+    @include s-values(input-file)
+
+  // <input-image> ($s-tags-input-image)
+  @include s-input-image()
+    @include s-values(input-image)
+
+  // <input-list> ($s-tags-input-list)
+  @include s-input-list()
+    @include s-values(input-list)
+
+  // <input-number> ($s-tags-input-number)
+  @include s-input-number()
+    @include s-values(input-number)
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button
+      height: auto
+
+    // Similize styling across devices
+    -webkit-appearance: none
+
+  // <input-range> ($s-tags-input-range)
+  @include s-input-range()
+    @include s-values(input-range)
+
+  // <input-text> ($s-tags-input-text)
+  @include s-input-text()
+    @include s-values(input-text)
+
+    // Similize styling across devices
+    -webkit-appearance: none
+
+  // <select> ($s-tags-select)
+  @include s-select()
+    @include s-values(select)
+
+  // <select-multiple> ($s-tags-select-multiple)
+  @include s-select-multiple()
+    @include s-values(select-multiple)
+
+  // <textarea> ($s-tags-textarea)
+  textarea
+    @include s-values(textarea)
+    resize: s-var($s-textarea-resize)
+
+    // Similize styling across devices
+    -webkit-appearance: none
+
+  // Similize placeholder text color
+  @if $s-form-placeholder != false and $s-html5 == true
+    @if $s-prefixes == true or $s-legacy == true
+      // Chrome, Safari, Opera
+      ::-webkit-input-placeholder
+        color: s-var($s-form-placeholder)
+      // Firefox 18-
+      @if $s-legacy == true
+        @include s-point("-moz-placeholder")
+          color: s-var($s-form-placeholder)
+      // Firefox 19+
+      ::-moz-placeholder
+        color: s-var($s-form-placeholder)
+        // Unset color fading
+        opacity: 1
+      // IE 10+
+      @include s-point("-ms-input-placeholder")
+        color: s-var($s-form-placeholder)
+    ::placeholder
+      color: s-var($s-form-placeholder)
+    @if $s-form-placeholder-hide == true
+      @if $s-prefixes == true or $s-legacy == true
+        // Chrome, Safari, Opera
+        [placeholder]:focus::-webkit-input-placeholder
+          color: transparent
+        // Firefox 18-
+        @if $s-legacy == true
+          [placeholder]:focus:-moz-placeholder
+            color: transparent
+        // Firefox 19+
+        [placeholder]:focus::-moz-placeholder
+          color: transparent
+        // IE 10+
+        [placeholder]:focus:-ms-input-placeholder
+          color: transparent
+      [placeholder]:focus::placeholder
+        color: transparent
+
+  // Remove text-shadow in selection highlight
+  @if $s-selection-background != false
+    @if $s-prefixes == true or $s-legacy == true
+      // Firefox
+      ::-moz-selection
+        @if $s-selection-color != false
+          color: s-var($s-selection-color)
+        background: s-var($s-selection-background)
+        text-shadow: none
+    ::selection
+      @if $s-selection-color != false
+        color: s-var($s-selection-color)
+      background: s-var($s-selection-background)
+      text-shadow: none
+
+// Helper classes
+@mixin s-helpers()
+  @content
+
+// Print styles
+@mixin s-print()
+  @media print
+    @content
+
+// Values parser
+@mixin s-values($tag)
+  $properties: (position display visibility clear list-style float width min-width max-width height min-height max-height margin padding overflow overflow-x overflow-y vertical-align table-layout font font-family font-size font-style font-weight color letter-spacing line-height text-align text-decoration text-indent text-shadow text-transform white-space background background-color box-shadow border border-color border-style border-width border-radius border-collapse border-spacing transition transform animation opacity cursor)
+  $values: ()
+  $mirror: ()
+
+  @for $index from 1 through length($properties)
+    $mirror: map-merge($mirror, (nth($properties, $index): $index))
+
+  $values: s-values-tag($tag, $properties)
+
+  @each $property in $s-properties
+    $value: s-var(nth($values, map-get($mirror, $property)))
+
+    @if $property == "border-radius"
+      @if $s-legacy == true or $s-legacy == true
+        -webkit-#{$property}: $value
+        -moz-#{$property}: $value
+    @if $property == "box-shadow"
+      @if $s-legacy == true
+        -webkit-#{$property}: $value
+        -moz-#{$property}: $value
+    @if $property == "transition"
+      @if $s-prefixes == true or $s-legacy == true
+        -webkit-#{$property}: $value
+      @if $s-legacy == true
+        -moz-#{$property}: $value
+    @if $property == "transform"
+      @if $s-prefixes == true or $s-legacy == true
+        -webkit-#{$property}: $value
+        -ms-#{$property}: $value
+      @if $s-legacy == true
+        -moz-#{$property}: $value
+    @if $property == "animation"
+      @if $s-prefixes == true or $s-legacy == true
+        -webkit-#{$property}: $value
+      @if $s-legacy == true
+        -moz-#{$property}: $value
+    #{$property}: $value
+
+// Points balancer
+@mixin s-point($arguments...)
+  $result: null
+
+  @each $argument in $arguments
+    @if $result == null
+      $result: "\:#{$argument}"
+    @else
+      $result: $result + ", \:#{$argument}"
+
+  #{$result}
+    @content
+
+// Area spreader
+@mixin s-spread($size: 5, $position: "before")
+  $size: s-unit($size)
+
+  @if not $position == "after"
+    $position: "before"
+
+  &:#{$position}
+    content: ''
+    position: absolute
+    top: unquote("-#{$size}")
+    bottom: unquote("-#{$size}")
+    left: unquote("-#{$size}")
+    right: unquote("-#{$size}")
+
+
+// ==============================
+// FUNCTIONS
+// Internal helper functions
+// ==============================
+
+
+// Validate variables
+@function s-var($variable)
+  @if $variable
+    $variable: $variable + ""
+
+    @if $variable == "true" or $variable == "false" or $variable == ""
+      @return null
+    @else
+      @return unquote($variable)
+  @else
+    @return null
+
+// Revise units
+@function s-unit($unit)
+  $unit: $unit + ""
+  $length: str-length($unit)
+  $ending: null
+
+  @if $length > 2
+    $ending: str-slice($unit, -2)
+
+  @if $unit == "true" or $unit == "false"
+    @return null
+  @else
+    $number: s-number($unit)
+
+    @if $number
+      @if not index("px" "em", $ending)
+        @return unquote($number + "px")
+      @else
+        @return unquote($number + $ending)
+    @else
+      @return null
+
+// Extract mixin arguments
+@function s-arguments($values, $opposite: false)
+  $result: ()
+  $values: if(type-of($values) != "list", ($values), $values)
+
+  @each $value in $values
+    @if type-of($value) == "list"
+      @each $item in $value
+        $result: append($result, $item, if($opposite, "comma", "space"))
+    @else
+      $result: append($result, $value, if($opposite, "comma", "space"))
+
+  @return $result
+
+// Extract number from string
+@function s-number($string)
+  $strings: '0' '1' '2' '3' '4' '5' '6' '7' '8' '9'
+  $numbers: 0 1 2 3 4 5 6 7 8 9
+  $result: 0
+  $value: null
+
+  @for $i from 1 through str-length($string)
+    $character: str-slice($string, $i, $i)
+    $index: index($strings, $character)
+
+    @if $index
+      $number: nth($numbers, $index)
+      $result: $result * 10 + $number
+      $value: $result
+
+  @return $value
+
+// Replace item in list
+@function s-replace($list, $index, $value)
+  $result: ()
+
+  @for $i from 1 through length($list)
+    @if $i == $index
+      $result: append($result, $value)
+    @else
+      $result: append($result, nth($list, $i))
+
+  @return $result
+
+// Replace string in item
+@function str-replace($string, $search, $replace: '')
+  $index: str-index($string, $search)
+
+  @if $index
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace)
+  @return $string
+
+// Explode string into list
+@function s-explode($string, $delimiter: "")
+  $result: ()
+  $length: str-length($string)
+
+  @if str-length($delimiter) == 0
+    @for $i from 1 through $length
+      $result: append($result, unquote(str-slice($string, $i, $i) + ""), "comma")
+    @return $result
+
+  $running: true
+  $remaining: $string
+
+  @while $running
+    $index: str-index($remaining, $delimiter)
+    @if $index
+      $slice: unquote(str-slice($remaining, 1, $index - 1) + "")
+      $result: append($result, $slice, "comma")
+      $remaining: unquote(str-slice($remaining, $index + str-length($delimiter)) + "")
+    @else
+      $running: false
+
+  @return append($result, $remaining, "comma")
+
+// Return list
+@function s-list($value, $delimeter: ", ")
+  @if type-of($value) != list
+    @return s-explode($value, $delimeter)
+  @else
+    @return $value
+
+// Check property value
+@function s-v($values...)
+  $values: s-arguments($values, true)
+  $list: nth($values, 1)
+  $tag: nth($list, 1)
+  $properties: nth($list, 2)
+  $index: nth($values, 2)
+
+  @return variable-exists("s-" + $tag + "-" + nth($properties, $index))
+
+// Get tag values
+@function s-values-tag($tag, $properties)
+  $l: ($tag, $properties) // list
+  $t: $tag // tag
+  $v: () // value
+  $n: null // none
+
+  @if $t == "html"
+    $v: (if(s-v($l 1), $s-html-position, $n) if(s-v($l 2), $s-html-display, $n) if(s-v($l 3), $s-html-visibility, $n) if(s-v($l 4), $s-html-clear, $n) "" if(s-v($l 6), $s-html-float, $n) if(s-v($l 7), $s-html-width, $n) if(s-v($l 8), $s-html-min-width, $n) if(s-v($l 9), $s-html-max-width, $n) if(s-v($l 10), $s-html-height, $n) if(s-v($l 11), $s-html-min-height, $n) if(s-v($l 12), $s-html-max-height, $n) if(s-v($l 13), $s-html-margin, $n) if(s-v($l 14), $s-html-padding, $n) if(s-v($l 15), $s-html-overflow, $n) if(s-v($l 16), $s-html-overflow-x, $n) if(s-v($l 17), $s-html-overflow-y, $n) if(s-v($l 18), $s-html-vertical-align, $n) "" if(s-v($l 20), $s-html-font, $n) if(s-v($l 21), $s-html-font-family, $n) if(s-v($l 22), $s-html-font-size, $n) if(s-v($l 23), $s-html-font-style, $n) if(s-v($l 24), $s-html-font-weight, $n) if(s-v($l 25), $s-html-color, $n) if(s-v($l 26), $s-html-letter-spacing, $n) if(s-v($l 27), $s-html-line-height, $n) if(s-v($l 28), $s-html-text-align, $n) if(s-v($l 29), $s-html-text-decoration, $n) if(s-v($l 30), $s-html-text-indent, $n) if(s-v($l 31), $s-html-text-shadow, $n) if(s-v($l 32), $s-html-text-transform, $n) if(s-v($l 33), $s-html-white-space, $n) if(s-v($l 34), $s-html-background, $n) if(s-v($l 35), $s-html-background-color, $n) if(s-v($l 36), $s-html-box-shadow, $n) if(s-v($l 37), $s-html-border, $n) if(s-v($l 38), $s-html-border-color, $n) if(s-v($l 39), $s-html-border-style, $n) if(s-v($l 40), $s-html-border-width, $n) if(s-v($l 41), $s-html-border-radius, $n) "" "" if(s-v($l 44), $s-html-transition, $n) if(s-v($l 45), $s-html-transform, $n) if(s-v($l 46), $s-html-animation, $n) if(s-v($l 47), $s-html-opacity, $n) if(s-v($l 48), $s-html-cursor, $n))
+  @else if $t == "body"
+    $v: (if(s-v($l 1), $s-body-position, $n) if(s-v($l 2), $s-body-display, $n) if(s-v($l 3), $s-body-visibility, $n) if(s-v($l 4), $s-body-clear, $n) "" if(s-v($l 6), $s-body-float, $n) if(s-v($l 7), $s-body-width, $n) if(s-v($l 8), $s-body-min-width, $n) if(s-v($l 9), $s-body-max-width, $n) if(s-v($l 10), $s-body-height, $n) if(s-v($l 11), $s-body-min-height, $n) if(s-v($l 12), $s-body-max-height, $n) if(s-v($l 13), $s-body-margin, $n) if(s-v($l 14), $s-body-padding, $n) if(s-v($l 15), $s-body-overflow, $n) if(s-v($l 16), $s-body-overflow-x, $n) if(s-v($l 17), $s-body-overflow-y, $n) if(s-v($l 18), $s-body-vertical-align, $n) "" if(s-v($l 20), $s-body-font, $n) if(s-v($l 21), $s-body-font-family, $n) if(s-v($l 22), $s-body-font-size, $n) if(s-v($l 23), $s-body-font-style, $n) if(s-v($l 24), $s-body-font-weight, $n) if(s-v($l 25), $s-body-color, $n) if(s-v($l 26), $s-body-letter-spacing, $n) if(s-v($l 27), $s-body-line-height, $n) if(s-v($l 28), $s-body-text-align, $n) if(s-v($l 29), $s-body-text-decoration, $n) if(s-v($l 30), $s-body-text-indent, $n) if(s-v($l 31), $s-body-text-shadow, $n) if(s-v($l 32), $s-body-text-transform, $n) if(s-v($l 33), $s-body-white-space, $n) if(s-v($l 34), $s-body-background, $n) if(s-v($l 35), $s-body-background-color, $n) if(s-v($l 36), $s-body-box-shadow, $n) if(s-v($l 37), $s-body-border, $n) if(s-v($l 38), $s-body-border-color, $n) if(s-v($l 39), $s-body-border-style, $n) if(s-v($l 40), $s-body-border-width, $n) if(s-v($l 41), $s-body-border-radius, $n) "" "" if(s-v($l 44), $s-body-transition, $n) if(s-v($l 45), $s-body-transform, $n) if(s-v($l 46), $s-body-animation, $n) if(s-v($l 47), $s-body-opacity, $n) if(s-v($l 48), $s-body-cursor, $n))
+  @else if $t == "a"
+    $v: (if(s-v($l 1), $s-a-position, $n) if(s-v($l 2), $s-a-display, $n) if(s-v($l 3), $s-a-visibility, $n) if(s-v($l 4), $s-a-clear, $n) "" if(s-v($l 6), $s-a-float, $n) if(s-v($l 7), $s-a-width, $n) if(s-v($l 8), $s-a-min-width, $n) if(s-v($l 9), $s-a-max-width, $n) if(s-v($l 10), $s-a-height, $n) if(s-v($l 11), $s-a-min-height, $n) if(s-v($l 12), $s-a-max-height, $n) if(s-v($l 13), $s-a-margin, $n) if(s-v($l 14), $s-a-padding, $n) if(s-v($l 15), $s-a-overflow, $n) if(s-v($l 16), $s-a-overflow-x, $n) if(s-v($l 17), $s-a-overflow-y, $n) if(s-v($l 18), $s-a-vertical-align, $n) "" if(s-v($l 20), $s-a-font, $n) if(s-v($l 21), $s-a-font-family, $n) if(s-v($l 22), $s-a-font-size, $n) if(s-v($l 23), $s-a-font-style, $n) if(s-v($l 24), $s-a-font-weight, $n) if(s-v($l 25), $s-a-color, $n) if(s-v($l 26), $s-a-letter-spacing, $n) if(s-v($l 27), $s-a-line-height, $n) if(s-v($l 28), $s-a-text-align, $n) if(s-v($l 29), $s-a-text-decoration, $n) if(s-v($l 30), $s-a-text-indent, $n) if(s-v($l 31), $s-a-text-shadow, $n) if(s-v($l 32), $s-a-text-transform, $n) if(s-v($l 33), $s-a-white-space, $n) if(s-v($l 34), $s-a-background, $n) if(s-v($l 35), $s-a-background-color, $n) if(s-v($l 36), $s-a-box-shadow, $n) if(s-v($l 37), $s-a-border, $n) if(s-v($l 38), $s-a-border-color, $n) if(s-v($l 39), $s-a-border-style, $n) if(s-v($l 40), $s-a-border-width, $n) if(s-v($l 41), $s-a-border-radius, $n) "" "" if(s-v($l 44), $s-a-transition, $n) if(s-v($l 45), $s-a-transform, $n) if(s-v($l 46), $s-a-animation, $n) if(s-v($l 47), $s-a-opacity, $n) if(s-v($l 48), $s-a-cursor, $n))
+  @else if $t == "img"
+    $v: (if(s-v($l 1), $s-img-position, $n) if(s-v($l 2), $s-img-display, $n) if(s-v($l 3), $s-img-visibility, $n) if(s-v($l 4), $s-img-clear, $n) "" if(s-v($l 6), $s-img-float, $n) if(s-v($l 7), $s-img-width, $n) if(s-v($l 8), $s-img-min-width, $n) if(s-v($l 9), $s-img-max-width, $n) if(s-v($l 10), $s-img-height, $n) if(s-v($l 11), $s-img-min-height, $n) if(s-v($l 12), $s-img-max-height, $n) if(s-v($l 13), $s-img-margin, $n) if(s-v($l 14), $s-img-padding, $n) if(s-v($l 15), $s-img-overflow, $n) if(s-v($l 16), $s-img-overflow-x, $n) if(s-v($l 17), $s-img-overflow-y, $n) if(s-v($l 18), $s-img-vertical-align, $n) "" if(s-v($l 20), $s-img-font, $n) if(s-v($l 21), $s-img-font-family, $n) if(s-v($l 22), $s-img-font-size, $n) if(s-v($l 23), $s-img-font-style, $n) if(s-v($l 24), $s-img-font-weight, $n) if(s-v($l 25), $s-img-color, $n) if(s-v($l 26), $s-img-letter-spacing, $n) if(s-v($l 27), $s-img-line-height, $n) if(s-v($l 28), $s-img-text-align, $n) if(s-v($l 29), $s-img-text-decoration, $n) if(s-v($l 30), $s-img-text-indent, $n) if(s-v($l 31), $s-img-text-shadow, $n) if(s-v($l 32), $s-img-text-transform, $n) if(s-v($l 33), $s-img-white-space, $n) if(s-v($l 34), $s-img-background, $n) if(s-v($l 35), $s-img-background-color, $n) if(s-v($l 36), $s-img-box-shadow, $n) if(s-v($l 37), $s-img-border, $n) if(s-v($l 38), $s-img-border-color, $n) if(s-v($l 39), $s-img-border-style, $n) if(s-v($l 40), $s-img-border-width, $n) if(s-v($l 41), $s-img-border-radius, $n) "" "" if(s-v($l 44), $s-img-transition, $n) if(s-v($l 45), $s-img-transform, $n) if(s-v($l 46), $s-img-animation, $n) if(s-v($l 47), $s-img-opacity, $n) if(s-v($l 48), $s-img-cursor, $n))
+  @else if $t == "strong"
+    $v: (if(s-v($l 1), $s-strong-position, $n) if(s-v($l 2), $s-strong-display, $n) if(s-v($l 3), $s-strong-visibility, $n) if(s-v($l 4), $s-strong-clear, $n) "" if(s-v($l 6), $s-strong-float, $n) if(s-v($l 7), $s-strong-width, $n) if(s-v($l 8), $s-strong-min-width, $n) if(s-v($l 9), $s-strong-max-width, $n) if(s-v($l 10), $s-strong-height, $n) if(s-v($l 11), $s-strong-min-height, $n) if(s-v($l 12), $s-strong-max-height, $n) if(s-v($l 13), $s-strong-margin, $n) if(s-v($l 14), $s-strong-padding, $n) if(s-v($l 15), $s-strong-overflow, $n) if(s-v($l 16), $s-strong-overflow-x, $n) if(s-v($l 17), $s-strong-overflow-y, $n) if(s-v($l 18), $s-strong-vertical-align, $n) "" if(s-v($l 20), $s-strong-font, $n) if(s-v($l 21), $s-strong-font-family, $n) if(s-v($l 22), $s-strong-font-size, $n) if(s-v($l 23), $s-strong-font-style, $n) if(s-v($l 24), $s-strong-font-weight, $n) if(s-v($l 25), $s-strong-color, $n) if(s-v($l 26), $s-strong-letter-spacing, $n) if(s-v($l 27), $s-strong-line-height, $n) if(s-v($l 28), $s-strong-text-align, $n) if(s-v($l 29), $s-strong-text-decoration, $n) if(s-v($l 30), $s-strong-text-indent, $n) if(s-v($l 31), $s-strong-text-shadow, $n) if(s-v($l 32), $s-strong-text-transform, $n) if(s-v($l 33), $s-strong-white-space, $n) if(s-v($l 34), $s-strong-background, $n) if(s-v($l 35), $s-strong-background-color, $n) if(s-v($l 36), $s-strong-box-shadow, $n) if(s-v($l 37), $s-strong-border, $n) if(s-v($l 38), $s-strong-border-color, $n) if(s-v($l 39), $s-strong-border-style, $n) if(s-v($l 40), $s-strong-border-width, $n) if(s-v($l 41), $s-strong-border-radius, $n) "" "" if(s-v($l 44), $s-strong-transition, $n) if(s-v($l 45), $s-strong-transform, $n) if(s-v($l 46), $s-strong-animation, $n) if(s-v($l 47), $s-strong-opacity, $n) if(s-v($l 48), $s-strong-cursor, $n))
+  @else if $t == "em"
+    $v: (if(s-v($l 1), $s-em-position, $n) if(s-v($l 2), $s-em-display, $n) if(s-v($l 3), $s-em-visibility, $n) if(s-v($l 4), $s-em-clear, $n) "" if(s-v($l 6), $s-em-float, $n) if(s-v($l 7), $s-em-width, $n) if(s-v($l 8), $s-em-min-width, $n) if(s-v($l 9), $s-em-max-width, $n) if(s-v($l 10), $s-em-height, $n) if(s-v($l 11), $s-em-min-height, $n) if(s-v($l 12), $s-em-max-height, $n) if(s-v($l 13), $s-em-margin, $n) if(s-v($l 14), $s-em-padding, $n) if(s-v($l 15), $s-em-overflow, $n) if(s-v($l 16), $s-em-overflow-x, $n) if(s-v($l 17), $s-em-overflow-y, $n) if(s-v($l 18), $s-em-vertical-align, $n) "" if(s-v($l 20), $s-em-font, $n) if(s-v($l 21), $s-em-font-family, $n) if(s-v($l 22), $s-em-font-size, $n) if(s-v($l 23), $s-em-font-style, $n) if(s-v($l 24), $s-em-font-weight, $n) if(s-v($l 25), $s-em-color, $n) if(s-v($l 26), $s-em-letter-spacing, $n) if(s-v($l 27), $s-em-line-height, $n) if(s-v($l 28), $s-em-text-align, $n) if(s-v($l 29), $s-em-text-decoration, $n) if(s-v($l 30), $s-em-text-indent, $n) if(s-v($l 31), $s-em-text-shadow, $n) if(s-v($l 32), $s-em-text-transform, $n) if(s-v($l 33), $s-em-white-space, $n) if(s-v($l 34), $s-em-background, $n) if(s-v($l 35), $s-em-background-color, $n) if(s-v($l 36), $s-em-box-shadow, $n) if(s-v($l 37), $s-em-border, $n) if(s-v($l 38), $s-em-border-color, $n) if(s-v($l 39), $s-em-border-style, $n) if(s-v($l 40), $s-em-border-width, $n) if(s-v($l 41), $s-em-border-radius, $n) "" "" if(s-v($l 44), $s-em-transition, $n) if(s-v($l 45), $s-em-transform, $n) if(s-v($l 46), $s-em-animation, $n) if(s-v($l 47), $s-em-opacity, $n) if(s-v($l 48), $s-em-cursor, $n))
+  @else if $t == "small"
+    $v: (if(s-v($l 1), $s-small-position, $n) if(s-v($l 2), $s-small-display, $n) if(s-v($l 3), $s-small-visibility, $n) if(s-v($l 4), $s-small-clear, $n) "" if(s-v($l 6), $s-small-float, $n) if(s-v($l 7), $s-small-width, $n) if(s-v($l 8), $s-small-min-width, $n) if(s-v($l 9), $s-small-max-width, $n) if(s-v($l 10), $s-small-height, $n) if(s-v($l 11), $s-small-min-height, $n) if(s-v($l 12), $s-small-max-height, $n) if(s-v($l 13), $s-small-margin, $n) if(s-v($l 14), $s-small-padding, $n) if(s-v($l 15), $s-small-overflow, $n) if(s-v($l 16), $s-small-overflow-x, $n) if(s-v($l 17), $s-small-overflow-y, $n) if(s-v($l 18), $s-small-vertical-align, $n) "" if(s-v($l 20), $s-small-font, $n) if(s-v($l 21), $s-small-font-family, $n) if(s-v($l 22), $s-small-font-size, $n) if(s-v($l 23), $s-small-font-style, $n) if(s-v($l 24), $s-small-font-weight, $n) if(s-v($l 25), $s-small-color, $n) if(s-v($l 26), $s-small-letter-spacing, $n) if(s-v($l 27), $s-small-line-height, $n) if(s-v($l 28), $s-small-text-align, $n) if(s-v($l 29), $s-small-text-decoration, $n) if(s-v($l 30), $s-small-text-indent, $n) if(s-v($l 31), $s-small-text-shadow, $n) if(s-v($l 32), $s-small-text-transform, $n) if(s-v($l 33), $s-small-white-space, $n) if(s-v($l 34), $s-small-background, $n) if(s-v($l 35), $s-small-background-color, $n) if(s-v($l 36), $s-small-box-shadow, $n) if(s-v($l 37), $s-small-border, $n) if(s-v($l 38), $s-small-border-color, $n) if(s-v($l 39), $s-small-border-style, $n) if(s-v($l 40), $s-small-border-width, $n) if(s-v($l 41), $s-small-border-radius, $n) "" "" if(s-v($l 44), $s-small-transition, $n) if(s-v($l 45), $s-small-transform, $n) if(s-v($l 46), $s-small-animation, $n) if(s-v($l 47), $s-small-opacity, $n) if(s-v($l 48), $s-small-cursor, $n))
+  @else if $t == "mark"
+    $v: (if(s-v($l 1), $s-mark-position, $n) if(s-v($l 2), $s-mark-display, $n) if(s-v($l 3), $s-mark-visibility, $n) if(s-v($l 4), $s-mark-clear, $n) "" if(s-v($l 6), $s-mark-float, $n) if(s-v($l 7), $s-mark-width, $n) if(s-v($l 8), $s-mark-min-width, $n) if(s-v($l 9), $s-mark-max-width, $n) if(s-v($l 10), $s-mark-height, $n) if(s-v($l 11), $s-mark-min-height, $n) if(s-v($l 12), $s-mark-max-height, $n) if(s-v($l 13), $s-mark-margin, $n) if(s-v($l 14), $s-mark-padding, $n) if(s-v($l 15), $s-mark-overflow, $n) if(s-v($l 16), $s-mark-overflow-x, $n) if(s-v($l 17), $s-mark-overflow-y, $n) if(s-v($l 18), $s-mark-vertical-align, $n) "" if(s-v($l 20), $s-mark-font, $n) if(s-v($l 21), $s-mark-font-family, $n) if(s-v($l 22), $s-mark-font-size, $n) if(s-v($l 23), $s-mark-font-style, $n) if(s-v($l 24), $s-mark-font-weight, $n) if(s-v($l 25), $s-mark-color, $n) if(s-v($l 26), $s-mark-letter-spacing, $n) if(s-v($l 27), $s-mark-line-height, $n) if(s-v($l 28), $s-mark-text-align, $n) if(s-v($l 29), $s-mark-text-decoration, $n) if(s-v($l 30), $s-mark-text-indent, $n) if(s-v($l 31), $s-mark-text-shadow, $n) if(s-v($l 32), $s-mark-text-transform, $n) if(s-v($l 33), $s-mark-white-space, $n) if(s-v($l 34), $s-mark-background, $n) if(s-v($l 35), $s-mark-background-color, $n) if(s-v($l 36), $s-mark-box-shadow, $n) if(s-v($l 37), $s-mark-border, $n) if(s-v($l 38), $s-mark-border-color, $n) if(s-v($l 39), $s-mark-border-style, $n) if(s-v($l 40), $s-mark-border-width, $n) if(s-v($l 41), $s-mark-border-radius, $n) "" "" if(s-v($l 44), $s-mark-transition, $n) if(s-v($l 45), $s-mark-transform, $n) if(s-v($l 46), $s-mark-animation, $n) if(s-v($l 47), $s-mark-opacity, $n) if(s-v($l 48), $s-mark-cursor, $n))
+  @else if $t == "hr"
+    $v: (if(s-v($l 1), $s-hr-position, $n) if(s-v($l 2), $s-hr-display, $n) if(s-v($l 3), $s-hr-visibility, $n) if(s-v($l 4), $s-hr-clear, $n) "" if(s-v($l 6), $s-hr-float, $n) if(s-v($l 7), $s-hr-width, $n) if(s-v($l 8), $s-hr-min-width, $n) if(s-v($l 9), $s-hr-max-width, $n) if(s-v($l 10), $s-hr-height, $n) if(s-v($l 11), $s-hr-min-height, $n) if(s-v($l 12), $s-hr-max-height, $n) if(s-v($l 13), $s-hr-margin, $n) if(s-v($l 14), $s-hr-padding, $n) if(s-v($l 15), $s-hr-overflow, $n) if(s-v($l 16), $s-hr-overflow-x, $n) if(s-v($l 17), $s-hr-overflow-y, $n) if(s-v($l 18), $s-hr-vertical-align, $n) "" if(s-v($l 20), $s-hr-font, $n) if(s-v($l 21), $s-hr-font-family, $n) if(s-v($l 22), $s-hr-font-size, $n) if(s-v($l 23), $s-hr-font-style, $n) if(s-v($l 24), $s-hr-font-weight, $n) if(s-v($l 25), $s-hr-color, $n) if(s-v($l 26), $s-hr-letter-spacing, $n) if(s-v($l 27), $s-hr-line-height, $n) if(s-v($l 28), $s-hr-text-align, $n) if(s-v($l 29), $s-hr-text-decoration, $n) if(s-v($l 30), $s-hr-text-indent, $n) if(s-v($l 31), $s-hr-text-shadow, $n) if(s-v($l 32), $s-hr-text-transform, $n) if(s-v($l 33), $s-hr-white-space, $n) if(s-v($l 34), $s-hr-background, $n) if(s-v($l 35), $s-hr-background-color, $n) if(s-v($l 36), $s-hr-box-shadow, $n) if(s-v($l 37), $s-hr-border, $n) if(s-v($l 38), $s-hr-border-color, $n) if(s-v($l 39), $s-hr-border-style, $n) if(s-v($l 40), $s-hr-border-width, $n) if(s-v($l 41), $s-hr-border-radius, $n) "" "" if(s-v($l 44), $s-hr-transition, $n) if(s-v($l 45), $s-hr-transform, $n) if(s-v($l 46), $s-hr-animation, $n) if(s-v($l 47), $s-hr-opacity, $n) if(s-v($l 48), $s-hr-cursor, $n))
+  @else if $t == "code"
+    $v: (if(s-v($l 1), $s-code-position, $n) if(s-v($l 2), $s-code-display, $n) if(s-v($l 3), $s-code-visibility, $n) if(s-v($l 4), $s-code-clear, $n) "" if(s-v($l 6), $s-code-float, $n) if(s-v($l 7), $s-code-width, $n) if(s-v($l 8), $s-code-min-width, $n) if(s-v($l 9), $s-code-max-width, $n) if(s-v($l 10), $s-code-height, $n) if(s-v($l 11), $s-code-min-height, $n) if(s-v($l 12), $s-code-max-height, $n) if(s-v($l 13), $s-code-margin, $n) if(s-v($l 14), $s-code-padding, $n) if(s-v($l 15), $s-code-overflow, $n) if(s-v($l 16), $s-code-overflow-x, $n) if(s-v($l 17), $s-code-overflow-y, $n) if(s-v($l 18), $s-code-vertical-align, $n) "" if(s-v($l 20), $s-code-font, $n) if(s-v($l 21), $s-code-font-family, $n) if(s-v($l 22), $s-code-font-size, $n) if(s-v($l 23), $s-code-font-style, $n) if(s-v($l 24), $s-code-font-weight, $n) if(s-v($l 25), $s-code-color, $n) if(s-v($l 26), $s-code-letter-spacing, $n) if(s-v($l 27), $s-code-line-height, $n) if(s-v($l 28), $s-code-text-align, $n) if(s-v($l 29), $s-code-text-decoration, $n) if(s-v($l 30), $s-code-text-indent, $n) if(s-v($l 31), $s-code-text-shadow, $n) if(s-v($l 32), $s-code-text-transform, $n) if(s-v($l 33), $s-code-white-space, $n) if(s-v($l 34), $s-code-background, $n) if(s-v($l 35), $s-code-background-color, $n) if(s-v($l 36), $s-code-box-shadow, $n) if(s-v($l 37), $s-code-border, $n) if(s-v($l 38), $s-code-border-color, $n) if(s-v($l 39), $s-code-border-style, $n) if(s-v($l 40), $s-code-border-width, $n) if(s-v($l 41), $s-code-border-radius, $n) "" "" if(s-v($l 44), $s-code-transition, $n) if(s-v($l 45), $s-code-transform, $n) if(s-v($l 46), $s-code-animation, $n) if(s-v($l 47), $s-code-opacity, $n) if(s-v($l 48), $s-code-cursor, $n))
+  @else if $t == "h1"
+    $v: (if(s-v($l 1), $s-h1-position, $n) if(s-v($l 2), $s-h1-display, $n) if(s-v($l 3), $s-h1-visibility, $n) if(s-v($l 4), $s-h1-clear, $n) "" if(s-v($l 6), $s-h1-float, $n) if(s-v($l 7), $s-h1-width, $n) if(s-v($l 8), $s-h1-min-width, $n) if(s-v($l 9), $s-h1-max-width, $n) if(s-v($l 10), $s-h1-height, $n) if(s-v($l 11), $s-h1-min-height, $n) if(s-v($l 12), $s-h1-max-height, $n) if(s-v($l 13), $s-h1-margin, $n) if(s-v($l 14), $s-h1-padding, $n) if(s-v($l 15), $s-h1-overflow, $n) if(s-v($l 16), $s-h1-overflow-x, $n) if(s-v($l 17), $s-h1-overflow-y, $n) if(s-v($l 18), $s-h1-vertical-align, $n) "" if(s-v($l 20), $s-h1-font, $n) if(s-v($l 21), $s-h1-font-family, $n) if(s-v($l 22), $s-h1-font-size, $n) if(s-v($l 23), $s-h1-font-style, $n) if(s-v($l 24), $s-h1-font-weight, $n) if(s-v($l 25), $s-h1-color, $n) if(s-v($l 26), $s-h1-letter-spacing, $n) if(s-v($l 27), $s-h1-line-height, $n) if(s-v($l 28), $s-h1-text-align, $n) if(s-v($l 29), $s-h1-text-decoration, $n) if(s-v($l 30), $s-h1-text-indent, $n) if(s-v($l 31), $s-h1-text-shadow, $n) if(s-v($l 32), $s-h1-text-transform, $n) if(s-v($l 33), $s-h1-white-space, $n) if(s-v($l 34), $s-h1-background, $n) if(s-v($l 35), $s-h1-background-color, $n) if(s-v($l 36), $s-h1-box-shadow, $n) if(s-v($l 37), $s-h1-border, $n) if(s-v($l 38), $s-h1-border-color, $n) if(s-v($l 39), $s-h1-border-style, $n) if(s-v($l 40), $s-h1-border-width, $n) if(s-v($l 41), $s-h1-border-radius, $n) "" "" if(s-v($l 44), $s-h1-transition, $n) if(s-v($l 45), $s-h1-transform, $n) if(s-v($l 46), $s-h1-animation, $n) if(s-v($l 47), $s-h1-opacity, $n) if(s-v($l 48), $s-h1-cursor, $n))
+  @else if $t == "h2"
+    $v: (if(s-v($l 1), $s-h2-position, $n) if(s-v($l 2), $s-h2-display, $n) if(s-v($l 3), $s-h2-visibility, $n) if(s-v($l 4), $s-h2-clear, $n) "" if(s-v($l 6), $s-h2-float, $n) if(s-v($l 7), $s-h2-width, $n) if(s-v($l 8), $s-h2-min-width, $n) if(s-v($l 9), $s-h2-max-width, $n) if(s-v($l 10), $s-h2-height, $n) if(s-v($l 11), $s-h2-min-height, $n) if(s-v($l 12), $s-h2-max-height, $n) if(s-v($l 13), $s-h2-margin, $n) if(s-v($l 14), $s-h2-padding, $n) if(s-v($l 15), $s-h2-overflow, $n) if(s-v($l 16), $s-h2-overflow-x, $n) if(s-v($l 17), $s-h2-overflow-y, $n) if(s-v($l 18), $s-h2-vertical-align, $n) "" if(s-v($l 20), $s-h2-font, $n) if(s-v($l 21), $s-h2-font-family, $n) if(s-v($l 22), $s-h2-font-size, $n) if(s-v($l 23), $s-h2-font-style, $n) if(s-v($l 24), $s-h2-font-weight, $n) if(s-v($l 25), $s-h2-color, $n) if(s-v($l 26), $s-h2-letter-spacing, $n) if(s-v($l 27), $s-h2-line-height, $n) if(s-v($l 28), $s-h2-text-align, $n) if(s-v($l 29), $s-h2-text-decoration, $n) if(s-v($l 30), $s-h2-text-indent, $n) if(s-v($l 31), $s-h2-text-shadow, $n) if(s-v($l 32), $s-h2-text-transform, $n) if(s-v($l 33), $s-h2-white-space, $n) if(s-v($l 34), $s-h2-background, $n) if(s-v($l 35), $s-h2-background-color, $n) if(s-v($l 36), $s-h2-box-shadow, $n) if(s-v($l 37), $s-h2-border, $n) if(s-v($l 38), $s-h2-border-color, $n) if(s-v($l 39), $s-h2-border-style, $n) if(s-v($l 40), $s-h2-border-width, $n) if(s-v($l 41), $s-h2-border-radius, $n) "" "" if(s-v($l 44), $s-h2-transition, $n) if(s-v($l 45), $s-h2-transform, $n) if(s-v($l 46), $s-h2-animation, $n) if(s-v($l 47), $s-h2-opacity, $n) if(s-v($l 48), $s-h2-cursor, $n))
+  @else if $t == "h3"
+    $v: (if(s-v($l 1), $s-h3-position, $n) if(s-v($l 2), $s-h3-display, $n) if(s-v($l 3), $s-h3-visibility, $n) if(s-v($l 4), $s-h3-clear, $n) "" if(s-v($l 6), $s-h3-float, $n) if(s-v($l 7), $s-h3-width, $n) if(s-v($l 8), $s-h3-min-width, $n) if(s-v($l 9), $s-h3-max-width, $n) if(s-v($l 10), $s-h3-height, $n) if(s-v($l 11), $s-h3-min-height, $n) if(s-v($l 12), $s-h3-max-height, $n) if(s-v($l 13), $s-h3-margin, $n) if(s-v($l 14), $s-h3-padding, $n) if(s-v($l 15), $s-h3-overflow, $n) if(s-v($l 16), $s-h3-overflow-x, $n) if(s-v($l 17), $s-h3-overflow-y, $n) if(s-v($l 18), $s-h3-vertical-align, $n) "" if(s-v($l 20), $s-h3-font, $n) if(s-v($l 21), $s-h3-font-family, $n) if(s-v($l 22), $s-h3-font-size, $n) if(s-v($l 23), $s-h3-font-style, $n) if(s-v($l 24), $s-h3-font-weight, $n) if(s-v($l 25), $s-h3-color, $n) if(s-v($l 26), $s-h3-letter-spacing, $n) if(s-v($l 27), $s-h3-line-height, $n) if(s-v($l 28), $s-h3-text-align, $n) if(s-v($l 29), $s-h3-text-decoration, $n) if(s-v($l 30), $s-h3-text-indent, $n) if(s-v($l 31), $s-h3-text-shadow, $n) if(s-v($l 32), $s-h3-text-transform, $n) if(s-v($l 33), $s-h3-white-space, $n) if(s-v($l 34), $s-h3-background, $n) if(s-v($l 35), $s-h3-background-color, $n) if(s-v($l 36), $s-h3-box-shadow, $n) if(s-v($l 37), $s-h3-border, $n) if(s-v($l 38), $s-h3-border-color, $n) if(s-v($l 39), $s-h3-border-style, $n) if(s-v($l 40), $s-h3-border-width, $n) if(s-v($l 41), $s-h3-border-radius, $n) "" "" if(s-v($l 44), $s-h3-transition, $n) if(s-v($l 45), $s-h3-transform, $n) if(s-v($l 46), $s-h3-animation, $n) if(s-v($l 47), $s-h3-opacity, $n) if(s-v($l 48), $s-h3-cursor, $n))
+  @else if $t == "h4"
+    $v: (if(s-v($l 1), $s-h4-position, $n) if(s-v($l 2), $s-h4-display, $n) if(s-v($l 3), $s-h4-visibility, $n) if(s-v($l 4), $s-h4-clear, $n) "" if(s-v($l 6), $s-h4-float, $n) if(s-v($l 7), $s-h4-width, $n) if(s-v($l 8), $s-h4-min-width, $n) if(s-v($l 9), $s-h4-max-width, $n) if(s-v($l 10), $s-h4-height, $n) if(s-v($l 11), $s-h4-min-height, $n) if(s-v($l 12), $s-h4-max-height, $n) if(s-v($l 13), $s-h4-margin, $n) if(s-v($l 14), $s-h4-padding, $n) if(s-v($l 15), $s-h4-overflow, $n) if(s-v($l 16), $s-h4-overflow-x, $n) if(s-v($l 17), $s-h4-overflow-y, $n) if(s-v($l 18), $s-h4-vertical-align, $n) "" if(s-v($l 20), $s-h4-font, $n) if(s-v($l 21), $s-h4-font-family, $n) if(s-v($l 22), $s-h4-font-size, $n) if(s-v($l 23), $s-h4-font-style, $n) if(s-v($l 24), $s-h4-font-weight, $n) if(s-v($l 25), $s-h4-color, $n) if(s-v($l 26), $s-h4-letter-spacing, $n) if(s-v($l 27), $s-h4-line-height, $n) if(s-v($l 28), $s-h4-text-align, $n) if(s-v($l 29), $s-h4-text-decoration, $n) if(s-v($l 30), $s-h4-text-indent, $n) if(s-v($l 31), $s-h4-text-shadow, $n) if(s-v($l 32), $s-h4-text-transform, $n) if(s-v($l 33), $s-h4-white-space, $n) if(s-v($l 34), $s-h4-background, $n) if(s-v($l 35), $s-h4-background-color, $n) if(s-v($l 36), $s-h4-box-shadow, $n) if(s-v($l 37), $s-h4-border, $n) if(s-v($l 38), $s-h4-border-color, $n) if(s-v($l 39), $s-h4-border-style, $n) if(s-v($l 40), $s-h4-border-width, $n) if(s-v($l 41), $s-h4-border-radius, $n) "" "" if(s-v($l 44), $s-h4-transition, $n) if(s-v($l 45), $s-h4-transform, $n) if(s-v($l 46), $s-h4-animation, $n) if(s-v($l 47), $s-h4-opacity, $n) if(s-v($l 48), $s-h4-cursor, $n))
+  @else if $t == "h5"
+    $v: (if(s-v($l 1), $s-h5-position, $n) if(s-v($l 2), $s-h5-display, $n) if(s-v($l 3), $s-h5-visibility, $n) if(s-v($l 4), $s-h5-clear, $n) "" if(s-v($l 6), $s-h5-float, $n) if(s-v($l 7), $s-h5-width, $n) if(s-v($l 8), $s-h5-min-width, $n) if(s-v($l 9), $s-h5-max-width, $n) if(s-v($l 10), $s-h5-height, $n) if(s-v($l 11), $s-h5-min-height, $n) if(s-v($l 12), $s-h5-max-height, $n) if(s-v($l 13), $s-h5-margin, $n) if(s-v($l 14), $s-h5-padding, $n) if(s-v($l 15), $s-h5-overflow, $n) if(s-v($l 16), $s-h5-overflow-x, $n) if(s-v($l 17), $s-h5-overflow-y, $n) if(s-v($l 18), $s-h5-vertical-align, $n) "" if(s-v($l 20), $s-h5-font, $n) if(s-v($l 21), $s-h5-font-family, $n) if(s-v($l 22), $s-h5-font-size, $n) if(s-v($l 23), $s-h5-font-style, $n) if(s-v($l 24), $s-h5-font-weight, $n) if(s-v($l 25), $s-h5-color, $n) if(s-v($l 26), $s-h5-letter-spacing, $n) if(s-v($l 27), $s-h5-line-height, $n) if(s-v($l 28), $s-h5-text-align, $n) if(s-v($l 29), $s-h5-text-decoration, $n) if(s-v($l 30), $s-h5-text-indent, $n) if(s-v($l 31), $s-h5-text-shadow, $n) if(s-v($l 32), $s-h5-text-transform, $n) if(s-v($l 33), $s-h5-white-space, $n) if(s-v($l 34), $s-h5-background, $n) if(s-v($l 35), $s-h5-background-color, $n) if(s-v($l 36), $s-h5-box-shadow, $n) if(s-v($l 37), $s-h5-border, $n) if(s-v($l 38), $s-h5-border-color, $n) if(s-v($l 39), $s-h5-border-style, $n) if(s-v($l 40), $s-h5-border-width, $n) if(s-v($l 41), $s-h5-border-radius, $n) "" "" if(s-v($l 44), $s-h5-transition, $n) if(s-v($l 45), $s-h5-transform, $n) if(s-v($l 46), $s-h5-animation, $n) if(s-v($l 47), $s-h5-opacity, $n) if(s-v($l 48), $s-h5-cursor, $n))
+  @else if $t == "h6"
+    $v: (if(s-v($l 1), $s-h6-position, $n) if(s-v($l 2), $s-h6-display, $n) if(s-v($l 3), $s-h6-visibility, $n) if(s-v($l 4), $s-h6-clear, $n) "" if(s-v($l 6), $s-h6-float, $n) if(s-v($l 7), $s-h6-width, $n) if(s-v($l 8), $s-h6-min-width, $n) if(s-v($l 9), $s-h6-max-width, $n) if(s-v($l 10), $s-h6-height, $n) if(s-v($l 11), $s-h6-min-height, $n) if(s-v($l 12), $s-h6-max-height, $n) if(s-v($l 13), $s-h6-margin, $n) if(s-v($l 14), $s-h6-padding, $n) if(s-v($l 15), $s-h6-overflow, $n) if(s-v($l 16), $s-h6-overflow-x, $n) if(s-v($l 17), $s-h6-overflow-y, $n) if(s-v($l 18), $s-h6-vertical-align, $n) "" if(s-v($l 20), $s-h6-font, $n) if(s-v($l 21), $s-h6-font-family, $n) if(s-v($l 22), $s-h6-font-size, $n) if(s-v($l 23), $s-h6-font-style, $n) if(s-v($l 24), $s-h6-font-weight, $n) if(s-v($l 25), $s-h6-color, $n) if(s-v($l 26), $s-h6-letter-spacing, $n) if(s-v($l 27), $s-h6-line-height, $n) if(s-v($l 28), $s-h6-text-align, $n) if(s-v($l 29), $s-h6-text-decoration, $n) if(s-v($l 30), $s-h6-text-indent, $n) if(s-v($l 31), $s-h6-text-shadow, $n) if(s-v($l 32), $s-h6-text-transform, $n) if(s-v($l 33), $s-h6-white-space, $n) if(s-v($l 34), $s-h6-background, $n) if(s-v($l 35), $s-h6-background-color, $n) if(s-v($l 36), $s-h6-box-shadow, $n) if(s-v($l 37), $s-h6-border, $n) if(s-v($l 38), $s-h6-border-color, $n) if(s-v($l 39), $s-h6-border-style, $n) if(s-v($l 40), $s-h6-border-width, $n) if(s-v($l 41), $s-h6-border-radius, $n) "" "" if(s-v($l 44), $s-h6-transition, $n) if(s-v($l 45), $s-h6-transform, $n) if(s-v($l 46), $s-h6-animation, $n) if(s-v($l 47), $s-h6-opacity, $n) if(s-v($l 48), $s-h6-cursor, $n))
+  @else if $t == "blockquote"
+    $v: (if(s-v($l 1), $s-blockquote-position, $n) if(s-v($l 2), $s-blockquote-display, $n) if(s-v($l 3), $s-blockquote-visibility, $n) if(s-v($l 4), $s-blockquote-clear, $n) "" if(s-v($l 6), $s-blockquote-float, $n) if(s-v($l 7), $s-blockquote-width, $n) if(s-v($l 8), $s-blockquote-min-width, $n) if(s-v($l 9), $s-blockquote-max-width, $n) if(s-v($l 10), $s-blockquote-height, $n) if(s-v($l 11), $s-blockquote-min-height, $n) if(s-v($l 12), $s-blockquote-max-height, $n) if(s-v($l 13), $s-blockquote-margin, $n) if(s-v($l 14), $s-blockquote-padding, $n) if(s-v($l 15), $s-blockquote-overflow, $n) if(s-v($l 16), $s-blockquote-overflow-x, $n) if(s-v($l 17), $s-blockquote-overflow-y, $n) if(s-v($l 18), $s-blockquote-vertical-align, $n) "" if(s-v($l 20), $s-blockquote-font, $n) if(s-v($l 21), $s-blockquote-font-family, $n) if(s-v($l 22), $s-blockquote-font-size, $n) if(s-v($l 23), $s-blockquote-font-style, $n) if(s-v($l 24), $s-blockquote-font-weight, $n) if(s-v($l 25), $s-blockquote-color, $n) if(s-v($l 26), $s-blockquote-letter-spacing, $n) if(s-v($l 27), $s-blockquote-line-height, $n) if(s-v($l 28), $s-blockquote-text-align, $n) if(s-v($l 29), $s-blockquote-text-decoration, $n) if(s-v($l 30), $s-blockquote-text-indent, $n) if(s-v($l 31), $s-blockquote-text-shadow, $n) if(s-v($l 32), $s-blockquote-text-transform, $n) if(s-v($l 33), $s-blockquote-white-space, $n) if(s-v($l 34), $s-blockquote-background, $n) if(s-v($l 35), $s-blockquote-background-color, $n) if(s-v($l 36), $s-blockquote-box-shadow, $n) if(s-v($l 37), $s-blockquote-border, $n) if(s-v($l 38), $s-blockquote-border-color, $n) if(s-v($l 39), $s-blockquote-border-style, $n) if(s-v($l 40), $s-blockquote-border-width, $n) if(s-v($l 41), $s-blockquote-border-radius, $n) "" "" if(s-v($l 44), $s-blockquote-transition, $n) if(s-v($l 45), $s-blockquote-transform, $n) if(s-v($l 46), $s-blockquote-animation, $n) if(s-v($l 47), $s-blockquote-opacity, $n) if(s-v($l 48), $s-blockquote-cursor, $n))
+  @else if $t == "q"
+    $v: (if(s-v($l 1), $s-q-position, $n) if(s-v($l 2), $s-q-display, $n) if(s-v($l 3), $s-q-visibility, $n) if(s-v($l 4), $s-q-clear, $n) "" if(s-v($l 6), $s-q-float, $n) if(s-v($l 7), $s-q-width, $n) if(s-v($l 8), $s-q-min-width, $n) if(s-v($l 9), $s-q-max-width, $n) if(s-v($l 10), $s-q-height, $n) if(s-v($l 11), $s-q-min-height, $n) if(s-v($l 12), $s-q-max-height, $n) if(s-v($l 13), $s-q-margin, $n) if(s-v($l 14), $s-q-padding, $n) if(s-v($l 15), $s-q-overflow, $n) if(s-v($l 16), $s-q-overflow-x, $n) if(s-v($l 17), $s-q-overflow-y, $n) if(s-v($l 18), $s-q-vertical-align, $n) "" if(s-v($l 20), $s-q-font, $n) if(s-v($l 21), $s-q-font-family, $n) if(s-v($l 22), $s-q-font-size, $n) if(s-v($l 23), $s-q-font-style, $n) if(s-v($l 24), $s-q-font-weight, $n) if(s-v($l 25), $s-q-color, $n) if(s-v($l 26), $s-q-letter-spacing, $n) if(s-v($l 27), $s-q-line-height, $n) if(s-v($l 28), $s-q-text-align, $n) if(s-v($l 29), $s-q-text-decoration, $n) if(s-v($l 30), $s-q-text-indent, $n) if(s-v($l 31), $s-q-text-shadow, $n) if(s-v($l 32), $s-q-text-transform, $n) if(s-v($l 33), $s-q-white-space, $n) if(s-v($l 34), $s-q-background, $n) if(s-v($l 35), $s-q-background-color, $n) if(s-v($l 36), $s-q-box-shadow, $n) if(s-v($l 37), $s-q-border, $n) if(s-v($l 38), $s-q-border-color, $n) if(s-v($l 39), $s-q-border-style, $n) if(s-v($l 40), $s-q-border-width, $n) if(s-v($l 41), $s-q-border-radius, $n) "" "" if(s-v($l 44), $s-q-transition, $n) if(s-v($l 45), $s-q-transform, $n) if(s-v($l 46), $s-q-animation, $n) if(s-v($l 47), $s-q-opacity, $n) if(s-v($l 48), $s-q-cursor, $n))
+  @else if $t == "p"
+    $v: (if(s-v($l 1), $s-p-position, $n) if(s-v($l 2), $s-p-display, $n) if(s-v($l 3), $s-p-visibility, $n) if(s-v($l 4), $s-p-clear, $n) "" if(s-v($l 6), $s-p-float, $n) if(s-v($l 7), $s-p-width, $n) if(s-v($l 8), $s-p-min-width, $n) if(s-v($l 9), $s-p-max-width, $n) if(s-v($l 10), $s-p-height, $n) if(s-v($l 11), $s-p-min-height, $n) if(s-v($l 12), $s-p-max-height, $n) if(s-v($l 13), $s-p-margin, $n) if(s-v($l 14), $s-p-padding, $n) if(s-v($l 15), $s-p-overflow, $n) if(s-v($l 16), $s-p-overflow-x, $n) if(s-v($l 17), $s-p-overflow-y, $n) if(s-v($l 18), $s-p-vertical-align, $n) "" if(s-v($l 20), $s-p-font, $n) if(s-v($l 21), $s-p-font-family, $n) if(s-v($l 22), $s-p-font-size, $n) if(s-v($l 23), $s-p-font-style, $n) if(s-v($l 24), $s-p-font-weight, $n) if(s-v($l 25), $s-p-color, $n) if(s-v($l 26), $s-p-letter-spacing, $n) if(s-v($l 27), $s-p-line-height, $n) if(s-v($l 28), $s-p-text-align, $n) if(s-v($l 29), $s-p-text-decoration, $n) if(s-v($l 30), $s-p-text-indent, $n) if(s-v($l 31), $s-p-text-shadow, $n) if(s-v($l 32), $s-p-text-transform, $n) if(s-v($l 33), $s-p-white-space, $n) if(s-v($l 34), $s-p-background, $n) if(s-v($l 35), $s-p-background-color, $n) if(s-v($l 36), $s-p-box-shadow, $n) if(s-v($l 37), $s-p-border, $n) if(s-v($l 38), $s-p-border-color, $n) if(s-v($l 39), $s-p-border-style, $n) if(s-v($l 40), $s-p-border-width, $n) if(s-v($l 41), $s-p-border-radius, $n) "" "" if(s-v($l 44), $s-p-transition, $n) if(s-v($l 45), $s-p-transform, $n) if(s-v($l 46), $s-p-animation, $n) if(s-v($l 47), $s-p-opacity, $n) if(s-v($l 48), $s-p-cursor, $n))
+  @else if $t == "ol"
+    $v: (if(s-v($l 1), $s-ol-position, $n) if(s-v($l 2), $s-ol-display, $n) if(s-v($l 3), $s-ol-visibility, $n) if(s-v($l 4), $s-ol-clear, $n) if(s-v($l 5), $s-ol-list-style, $n) if(s-v($l 6), $s-ol-float, $n) if(s-v($l 7), $s-ol-width, $n) if(s-v($l 8), $s-ol-min-width, $n) if(s-v($l 9), $s-ol-max-width, $n) if(s-v($l 10), $s-ol-height, $n) if(s-v($l 11), $s-ol-min-height, $n) if(s-v($l 12), $s-ol-max-height, $n) if(s-v($l 13), $s-ol-margin, $n) if(s-v($l 14), $s-ol-padding, $n) if(s-v($l 15), $s-ol-overflow, $n) if(s-v($l 16), $s-ol-overflow-x, $n) if(s-v($l 17), $s-ol-overflow-y, $n) if(s-v($l 18), $s-ol-vertical-align, $n) "" if(s-v($l 20), $s-ol-font, $n) if(s-v($l 21), $s-ol-font-family, $n) if(s-v($l 22), $s-ol-font-size, $n) if(s-v($l 23), $s-ol-font-style, $n) if(s-v($l 24), $s-ol-font-weight, $n) if(s-v($l 25), $s-ol-color, $n) if(s-v($l 26), $s-ol-letter-spacing, $n) if(s-v($l 27), $s-ol-line-height, $n) if(s-v($l 28), $s-ol-text-align, $n) if(s-v($l 29), $s-ol-text-decoration, $n) if(s-v($l 30), $s-ol-text-indent, $n) if(s-v($l 31), $s-ol-text-shadow, $n) if(s-v($l 32), $s-ol-text-transform, $n) if(s-v($l 33), $s-ol-white-space, $n) if(s-v($l 34), $s-ol-background, $n) if(s-v($l 35), $s-ol-background-color, $n) if(s-v($l 36), $s-ol-box-shadow, $n) if(s-v($l 37), $s-ol-border, $n) if(s-v($l 38), $s-ol-border-color, $n) if(s-v($l 39), $s-ol-border-style, $n) if(s-v($l 40), $s-ol-border-width, $n) if(s-v($l 41), $s-ol-border-radius, $n) "" "" if(s-v($l 44), $s-ol-transition, $n) if(s-v($l 45), $s-ol-transform, $n) if(s-v($l 46), $s-ol-animation, $n) if(s-v($l 47), $s-ol-opacity, $n) if(s-v($l 48), $s-ol-cursor, $n))
+  @else if $t == "ul"
+    $v: (if(s-v($l 1), $s-ul-position, $n) if(s-v($l 2), $s-ul-display, $n) if(s-v($l 3), $s-ul-visibility, $n) if(s-v($l 4), $s-ul-clear, $n) if(s-v($l 5), $s-ol-list-style, $n) if(s-v($l 6), $s-ul-float, $n) if(s-v($l 7), $s-ul-width, $n) if(s-v($l 8), $s-ul-min-width, $n) if(s-v($l 9), $s-ul-max-width, $n) if(s-v($l 10), $s-ul-height, $n) if(s-v($l 11), $s-ul-min-height, $n) if(s-v($l 12), $s-ul-max-height, $n) if(s-v($l 13), $s-ul-margin, $n) if(s-v($l 14), $s-ul-padding, $n) if(s-v($l 15), $s-ul-overflow, $n) if(s-v($l 16), $s-ul-overflow-x, $n) if(s-v($l 17), $s-ul-overflow-y, $n) if(s-v($l 18), $s-ul-vertical-align, $n) "" if(s-v($l 20), $s-ul-font, $n) if(s-v($l 21), $s-ul-font-family, $n) if(s-v($l 22), $s-ul-font-size, $n) if(s-v($l 23), $s-ul-font-style, $n) if(s-v($l 24), $s-ul-font-weight, $n) if(s-v($l 25), $s-ul-color, $n) if(s-v($l 26), $s-ul-letter-spacing, $n) if(s-v($l 27), $s-ul-line-height, $n) if(s-v($l 28), $s-ul-text-align, $n) if(s-v($l 29), $s-ul-text-decoration, $n) if(s-v($l 30), $s-ul-text-indent, $n) if(s-v($l 31), $s-ul-text-shadow, $n) if(s-v($l 32), $s-ul-text-transform, $n) if(s-v($l 33), $s-ul-white-space, $n) if(s-v($l 34), $s-ul-background, $n) if(s-v($l 35), $s-ul-background-color, $n) if(s-v($l 36), $s-ul-box-shadow, $n) if(s-v($l 37), $s-ul-border, $n) if(s-v($l 38), $s-ul-border-color, $n) if(s-v($l 39), $s-ul-border-style, $n) if(s-v($l 40), $s-ul-border-width, $n) if(s-v($l 41), $s-ul-border-radius, $n) "" "" if(s-v($l 44), $s-ul-transition, $n) if(s-v($l 45), $s-ul-transform, $n) if(s-v($l 46), $s-ul-animation, $n) if(s-v($l 47), $s-ul-opacity, $n) if(s-v($l 48), $s-ul-cursor, $n))
+  @else if $t == "li"
+    $v: (if(s-v($l 1), $s-li-position, $n) if(s-v($l 2), $s-li-display, $n) if(s-v($l 3), $s-li-visibility, $n) if(s-v($l 4), $s-li-clear, $n) "" if(s-v($l 6), $s-li-float, $n) if(s-v($l 7), $s-li-width, $n) if(s-v($l 8), $s-li-min-width, $n) if(s-v($l 9), $s-li-max-width, $n) if(s-v($l 10), $s-li-height, $n) if(s-v($l 11), $s-li-min-height, $n) if(s-v($l 12), $s-li-max-height, $n) if(s-v($l 13), $s-li-margin, $n) if(s-v($l 14), $s-li-padding, $n) if(s-v($l 15), $s-li-overflow, $n) if(s-v($l 16), $s-li-overflow-x, $n) if(s-v($l 17), $s-li-overflow-y, $n) if(s-v($l 18), $s-li-vertical-align, $n) "" if(s-v($l 20), $s-li-font, $n) if(s-v($l 21), $s-li-font-family, $n) if(s-v($l 22), $s-li-font-size, $n) if(s-v($l 23), $s-li-font-style, $n) if(s-v($l 24), $s-li-font-weight, $n) if(s-v($l 25), $s-li-color, $n) if(s-v($l 26), $s-li-letter-spacing, $n) if(s-v($l 27), $s-li-line-height, $n) if(s-v($l 28), $s-li-text-align, $n) if(s-v($l 29), $s-li-text-decoration, $n) if(s-v($l 30), $s-li-text-indent, $n) if(s-v($l 31), $s-li-text-shadow, $n) if(s-v($l 32), $s-li-text-transform, $n) if(s-v($l 33), $s-li-white-space, $n) if(s-v($l 34), $s-li-background, $n) if(s-v($l 35), $s-li-background-color, $n) if(s-v($l 36), $s-li-box-shadow, $n) if(s-v($l 37), $s-li-border, $n) if(s-v($l 38), $s-li-border-color, $n) if(s-v($l 39), $s-li-border-style, $n) if(s-v($l 40), $s-li-border-width, $n) if(s-v($l 41), $s-li-border-radius, $n) "" "" if(s-v($l 44), $s-li-transition, $n) if(s-v($l 45), $s-li-transform, $n) if(s-v($l 46), $s-li-animation, $n) if(s-v($l 47), $s-li-opacity, $n) if(s-v($l 48), $s-li-cursor, $n))
+  @else if $t == "table"
+    $v: (if(s-v($l 1), $s-table-position, $n) if(s-v($l 2), $s-table-display, $n) if(s-v($l 3), $s-table-visibility, $n) if(s-v($l 4), $s-table-clear, $n) "" if(s-v($l 6), $s-table-float, $n) if(s-v($l 7), $s-table-width, $n) if(s-v($l 8), $s-table-min-width, $n) if(s-v($l 9), $s-table-max-width, $n) if(s-v($l 10), $s-table-height, $n) if(s-v($l 11), $s-table-min-height, $n) if(s-v($l 12), $s-table-max-height, $n) if(s-v($l 13), $s-table-margin, $n) if(s-v($l 14), $s-table-padding, $n) if(s-v($l 15), $s-table-overflow, $n) if(s-v($l 16), $s-table-overflow-x, $n) if(s-v($l 17), $s-table-overflow-y, $n) if(s-v($l 18), $s-table-vertical-align, $n) if(s-v($l 19), $s-table-layout, $n) if(s-v($l 20), $s-table-font, $n) if(s-v($l 21), $s-table-font-family, $n) if(s-v($l 22), $s-table-font-size, $n) if(s-v($l 23), $s-table-font-style, $n) if(s-v($l 24), $s-table-font-weight, $n) if(s-v($l 25), $s-table-color, $n) if(s-v($l 26), $s-table-letter-spacing, $n) if(s-v($l 27), $s-table-line-height, $n) if(s-v($l 28), $s-table-text-align, $n) if(s-v($l 29), $s-table-text-decoration, $n) if(s-v($l 30), $s-table-text-indent, $n) if(s-v($l 31), $s-table-text-shadow, $n) if(s-v($l 32), $s-table-text-transform, $n) if(s-v($l 33), $s-table-white-space, $n) if(s-v($l 34), $s-table-background, $n) if(s-v($l 35), $s-table-background-color, $n) if(s-v($l 36), $s-table-box-shadow, $n) if(s-v($l 37), $s-table-border, $n) if(s-v($l 38), $s-table-border-color, $n) if(s-v($l 39), $s-table-border-style, $n) if(s-v($l 40), $s-table-border-width, $n) if(s-v($l 41), $s-table-border-radius, $n) if(s-v($l 42), $s-table-border-collapse, $n) if(s-v($l 43), $s-table-border-spacing, $n) if(s-v($l 44), $s-table-transition, $n) if(s-v($l 45), $s-table-transform, $n) if(s-v($l 46), $s-table-animation, $n) if(s-v($l 47), $s-table-opacity, $n) if(s-v($l 48), $s-table-cursor, $n))
+  @else if $t == "td"
+    $v: (if(s-v($l 1), $s-td-position, $n) if(s-v($l 2), $s-td-display, $n) if(s-v($l 3), $s-td-visibility, $n) if(s-v($l 4), $s-td-clear, $n) "" if(s-v($l 6), $s-td-float, $n) if(s-v($l 7), $s-td-width, $n) if(s-v($l 8), $s-td-min-width, $n) if(s-v($l 9), $s-td-max-width, $n) if(s-v($l 10), $s-td-height, $n) if(s-v($l 11), $s-td-min-height, $n) if(s-v($l 12), $s-td-max-height, $n) if(s-v($l 13), $s-td-margin, $n) if(s-v($l 14), $s-td-padding, $n) if(s-v($l 15), $s-td-overflow, $n) if(s-v($l 16), $s-td-overflow-x, $n) if(s-v($l 17), $s-td-overflow-y, $n) if(s-v($l 18), $s-td-vertical-align, $n) "" if(s-v($l 20), $s-td-font, $n) if(s-v($l 21), $s-td-font-family, $n) if(s-v($l 22), $s-td-font-size, $n) if(s-v($l 23), $s-td-font-style, $n) if(s-v($l 24), $s-td-font-weight, $n) if(s-v($l 25), $s-td-color, $n) if(s-v($l 26), $s-td-letter-spacing, $n) if(s-v($l 27), $s-td-line-height, $n) if(s-v($l 28), $s-td-text-align, $n) if(s-v($l 29), $s-td-text-decoration, $n) if(s-v($l 30), $s-td-text-indent, $n) if(s-v($l 31), $s-td-text-shadow, $n) if(s-v($l 32), $s-td-text-transform, $n) if(s-v($l 33), $s-td-white-space, $n) if(s-v($l 34), $s-td-background, $n) if(s-v($l 35), $s-td-background-color, $n) if(s-v($l 36), $s-td-box-shadow, $n) if(s-v($l 37), $s-td-border, $n) if(s-v($l 38), $s-td-border-color, $n) if(s-v($l 39), $s-td-border-style, $n) if(s-v($l 40), $s-td-border-width, $n) if(s-v($l 41), $s-td-border-radius, $n) "" "" if(s-v($l 44), $s-td-transition, $n) if(s-v($l 45), $s-td-transform, $n) if(s-v($l 46), $s-td-animation, $n) if(s-v($l 47), $s-td-opacity, $n) if(s-v($l 48), $s-td-cursor, $n))
+  @else if $t == "th"
+    $v: (if(s-v($l 1), $s-th-position, $n) if(s-v($l 2), $s-th-display, $n) if(s-v($l 3), $s-th-visibility, $n) if(s-v($l 4), $s-th-clear, $n) "" if(s-v($l 6), $s-th-float, $n) if(s-v($l 7), $s-th-width, $n) if(s-v($l 8), $s-th-min-width, $n) if(s-v($l 9), $s-th-max-width, $n) if(s-v($l 10), $s-th-height, $n) if(s-v($l 11), $s-th-min-height, $n) if(s-v($l 12), $s-th-max-height, $n) if(s-v($l 13), $s-th-margin, $n) if(s-v($l 14), $s-th-padding, $n) if(s-v($l 15), $s-th-overflow, $n) if(s-v($l 16), $s-th-overflow-x, $n) if(s-v($l 17), $s-th-overflow-y, $n) if(s-v($l 18), $s-th-vertical-align, $n) "" if(s-v($l 20), $s-th-font, $n) if(s-v($l 21), $s-th-font-family, $n) if(s-v($l 22), $s-th-font-size, $n) if(s-v($l 23), $s-th-font-style, $n) if(s-v($l 24), $s-th-font-weight, $n) if(s-v($l 25), $s-th-color, $n) if(s-v($l 26), $s-th-letter-spacing, $n) if(s-v($l 27), $s-th-line-height, $n) if(s-v($l 28), $s-th-text-align, $n) if(s-v($l 29), $s-th-text-decoration, $n) if(s-v($l 30), $s-th-text-indent, $n) if(s-v($l 31), $s-th-text-shadow, $n) if(s-v($l 32), $s-th-text-transform, $n) if(s-v($l 33), $s-th-white-space, $n) if(s-v($l 34), $s-th-background, $n) if(s-v($l 35), $s-th-background-color, $n) if(s-v($l 36), $s-th-box-shadow, $n) if(s-v($l 37), $s-th-border, $n) if(s-v($l 38), $s-th-border-color, $n) if(s-v($l 39), $s-th-border-style, $n) if(s-v($l 40), $s-th-border-width, $n) if(s-v($l 41), $s-th-border-radius, $n) "" "" if(s-v($l 44), $s-th-transition, $n) if(s-v($l 45), $s-th-transform, $n) if(s-v($l 46), $s-th-animation, $n) if(s-v($l 47), $s-th-opacity, $n) if(s-v($l 48), $s-th-cursor, $n))
+  @else if $t == "form"
+    $v: (if(s-v($l 1), $s-form-position, $n) if(s-v($l 2), $s-form-display, $n) if(s-v($l 3), $s-form-visibility, $n) if(s-v($l 4), $s-form-clear, $n) "" if(s-v($l 6), $s-form-float, $n) if(s-v($l 7), $s-form-width, $n) if(s-v($l 8), $s-form-min-width, $n) if(s-v($l 9), $s-form-max-width, $n) if(s-v($l 10), $s-form-height, $n) if(s-v($l 11), $s-form-min-height, $n) if(s-v($l 12), $s-form-max-height, $n) if(s-v($l 13), $s-form-margin, $n) if(s-v($l 14), $s-form-padding, $n) if(s-v($l 15), $s-form-overflow, $n) if(s-v($l 16), $s-form-overflow-x, $n) if(s-v($l 17), $s-form-overflow-y, $n) if(s-v($l 18), $s-form-vertical-align, $n) "" if(s-v($l 20), $s-form-font, $n) if(s-v($l 21), $s-form-font-family, $n) if(s-v($l 22), $s-form-font-size, $n) if(s-v($l 23), $s-form-font-style, $n) if(s-v($l 24), $s-form-font-weight, $n) if(s-v($l 25), $s-form-color, $n) if(s-v($l 26), $s-form-letter-spacing, $n) if(s-v($l 27), $s-form-line-height, $n) if(s-v($l 28), $s-form-text-align, $n) if(s-v($l 29), $s-form-text-decoration, $n) if(s-v($l 30), $s-form-text-indent, $n) if(s-v($l 31), $s-form-text-shadow, $n) if(s-v($l 32), $s-form-text-transform, $n) if(s-v($l 33), $s-form-white-space, $n) if(s-v($l 34), $s-form-background, $n) if(s-v($l 35), $s-form-background-color, $n) if(s-v($l 36), $s-form-box-shadow, $n) if(s-v($l 37), $s-form-border, $n) if(s-v($l 38), $s-form-border-color, $n) if(s-v($l 39), $s-form-border-style, $n) if(s-v($l 40), $s-form-border-width, $n) if(s-v($l 41), $s-form-border-radius, $n) "" "" if(s-v($l 44), $s-form-transition, $n) if(s-v($l 45), $s-form-transform, $n) if(s-v($l 46), $s-form-animation, $n) if(s-v($l 47), $s-form-opacity, $n) if(s-v($l 48), $s-form-cursor, $n))
+  @else if $t == "fieldset"
+    $v: (if(s-v($l 1), $s-fieldset-position, $n) if(s-v($l 2), $s-fieldset-display, $n) if(s-v($l 3), $s-fieldset-visibility, $n) if(s-v($l 4), $s-fieldset-clear, $n) "" if(s-v($l 6), $s-fieldset-float, $n) if(s-v($l 7), $s-fieldset-width, $n) if(s-v($l 8), $s-fieldset-min-width, $n) if(s-v($l 9), $s-fieldset-max-width, $n) if(s-v($l 10), $s-fieldset-height, $n) if(s-v($l 11), $s-fieldset-min-height, $n) if(s-v($l 12), $s-fieldset-max-height, $n) if(s-v($l 13), $s-fieldset-margin, $n) if(s-v($l 14), $s-fieldset-padding, $n) if(s-v($l 15), $s-fieldset-overflow, $n) if(s-v($l 16), $s-fieldset-overflow-x, $n) if(s-v($l 17), $s-fieldset-overflow-y, $n) if(s-v($l 18), $s-fieldset-vertical-align, $n) "" if(s-v($l 20), $s-fieldset-font, $n) if(s-v($l 21), $s-fieldset-font-family, $n) if(s-v($l 22), $s-fieldset-font-size, $n) if(s-v($l 23), $s-fieldset-font-style, $n) if(s-v($l 24), $s-fieldset-font-weight, $n) if(s-v($l 25), $s-fieldset-color, $n) if(s-v($l 26), $s-fieldset-letter-spacing, $n) if(s-v($l 27), $s-fieldset-line-height, $n) if(s-v($l 28), $s-fieldset-text-align, $n) if(s-v($l 29), $s-fieldset-text-decoration, $n) if(s-v($l 30), $s-fieldset-text-indent, $n) if(s-v($l 31), $s-fieldset-text-shadow, $n) if(s-v($l 32), $s-fieldset-text-transform, $n) if(s-v($l 33), $s-fieldset-white-space, $n) if(s-v($l 34), $s-fieldset-background, $n) if(s-v($l 35), $s-fieldset-background-color, $n) if(s-v($l 36), $s-fieldset-box-shadow, $n) if(s-v($l 37), $s-fieldset-border, $n) if(s-v($l 38), $s-fieldset-border-color, $n) if(s-v($l 39), $s-fieldset-border-style, $n) if(s-v($l 40), $s-fieldset-border-width, $n) if(s-v($l 41), $s-fieldset-border-radius, $n) "" "" if(s-v($l 44), $s-fieldset-transition, $n) if(s-v($l 45), $s-fieldset-transform, $n) if(s-v($l 46), $s-fieldset-animation, $n) if(s-v($l 47), $s-fieldset-opacity, $n) if(s-v($l 48), $s-fieldset-cursor, $n))
+  @else if $t == "legend"
+    $v: (if(s-v($l 1), $s-legend-position, $n) if(s-v($l 2), $s-legend-display, $n) if(s-v($l 3), $s-legend-visibility, $n) if(s-v($l 4), $s-legend-clear, $n) "" if(s-v($l 6), $s-legend-float, $n) if(s-v($l 7), $s-legend-width, $n) if(s-v($l 8), $s-legend-min-width, $n) if(s-v($l 9), $s-legend-max-width, $n) if(s-v($l 10), $s-legend-height, $n) if(s-v($l 11), $s-legend-min-height, $n) if(s-v($l 12), $s-legend-max-height, $n) if(s-v($l 13), $s-legend-margin, $n) if(s-v($l 14), $s-legend-padding, $n) if(s-v($l 15), $s-legend-overflow, $n) if(s-v($l 16), $s-legend-overflow-x, $n) if(s-v($l 17), $s-legend-overflow-y, $n) if(s-v($l 18), $s-legend-vertical-align, $n) "" if(s-v($l 20), $s-legend-font, $n) if(s-v($l 21), $s-legend-font-family, $n) if(s-v($l 22), $s-legend-font-size, $n) if(s-v($l 23), $s-legend-font-style, $n) if(s-v($l 24), $s-legend-font-weight, $n) if(s-v($l 25), $s-legend-color, $n) if(s-v($l 26), $s-legend-letter-spacing, $n) if(s-v($l 27), $s-legend-line-height, $n) if(s-v($l 28), $s-legend-text-align, $n) if(s-v($l 29), $s-legend-text-decoration, $n) if(s-v($l 30), $s-legend-text-indent, $n) if(s-v($l 31), $s-legend-text-shadow, $n) if(s-v($l 32), $s-legend-text-transform, $n) if(s-v($l 33), $s-legend-white-space, $n) if(s-v($l 34), $s-legend-background, $n) if(s-v($l 35), $s-legend-background-color, $n) if(s-v($l 36), $s-legend-box-shadow, $n) if(s-v($l 37), $s-legend-border, $n) if(s-v($l 38), $s-legend-border-color, $n) if(s-v($l 39), $s-legend-border-style, $n) if(s-v($l 40), $s-legend-border-width, $n) if(s-v($l 41), $s-legend-border-radius, $n) "" "" if(s-v($l 44), $s-legend-transition, $n) if(s-v($l 45), $s-legend-transform, $n) if(s-v($l 46), $s-legend-animation, $n) if(s-v($l 47), $s-legend-opacity, $n) if(s-v($l 48), $s-legend-cursor, $n))
+  @else if $t == "label"
+    $v: (if(s-v($l 1), $s-label-position, $n) if(s-v($l 2), $s-label-display, $n) if(s-v($l 3), $s-label-visibility, $n) if(s-v($l 4), $s-label-clear, $n) "" if(s-v($l 6), $s-label-float, $n) if(s-v($l 7), $s-label-width, $n) if(s-v($l 8), $s-label-min-width, $n) if(s-v($l 9), $s-label-max-width, $n) if(s-v($l 10), $s-label-height, $n) if(s-v($l 11), $s-label-min-height, $n) if(s-v($l 12), $s-label-max-height, $n) if(s-v($l 13), $s-label-margin, $n) if(s-v($l 14), $s-label-padding, $n) if(s-v($l 15), $s-label-overflow, $n) if(s-v($l 16), $s-label-overflow-x, $n) if(s-v($l 17), $s-label-overflow-y, $n) if(s-v($l 18), $s-label-vertical-align, $n) "" if(s-v($l 20), $s-label-font, $n) if(s-v($l 21), $s-label-font-family, $n) if(s-v($l 22), $s-label-font-size, $n) if(s-v($l 23), $s-label-font-style, $n) if(s-v($l 24), $s-label-font-weight, $n) if(s-v($l 25), $s-label-color, $n) if(s-v($l 26), $s-label-letter-spacing, $n) if(s-v($l 27), $s-label-line-height, $n) if(s-v($l 28), $s-label-text-align, $n) if(s-v($l 29), $s-label-text-decoration, $n) if(s-v($l 30), $s-label-text-indent, $n) if(s-v($l 31), $s-label-text-shadow, $n) if(s-v($l 32), $s-label-text-transform, $n) if(s-v($l 33), $s-label-white-space, $n) if(s-v($l 34), $s-label-background, $n) if(s-v($l 35), $s-label-background-color, $n) if(s-v($l 36), $s-label-box-shadow, $n) if(s-v($l 37), $s-label-border, $n) if(s-v($l 38), $s-label-border-color, $n) if(s-v($l 39), $s-label-border-style, $n) if(s-v($l 40), $s-label-border-width, $n) if(s-v($l 41), $s-label-border-radius, $n) "" "" if(s-v($l 44), $s-label-transition, $n) if(s-v($l 45), $s-label-transform, $n) if(s-v($l 46), $s-label-animation, $n) if(s-v($l 47), $s-label-opacity, $n) if(s-v($l 48), $s-label-cursor, $n))
+  @else if $t == "button"
+    $v: (if(s-v($l 1), $s-button-position, $n) if(s-v($l 2), $s-button-display, $n) if(s-v($l 3), $s-button-visibility, $n) if(s-v($l 4), $s-button-clear, $n) "" if(s-v($l 6), $s-button-float, $n) if(s-v($l 7), $s-button-width, $n) if(s-v($l 8), $s-button-min-width, $n) if(s-v($l 9), $s-button-max-width, $n) if(s-v($l 10), $s-button-height, $n) if(s-v($l 11), $s-button-min-height, $n) if(s-v($l 12), $s-button-max-height, $n) if(s-v($l 13), $s-button-margin, $n) if(s-v($l 14), $s-button-padding, $n) if(s-v($l 15), $s-button-overflow, $n) if(s-v($l 16), $s-button-overflow-x, $n) if(s-v($l 17), $s-button-overflow-y, $n) if(s-v($l 18), $s-button-vertical-align, $n) "" if(s-v($l 20), $s-button-font, $n) if(s-v($l 21), $s-button-font-family, $n) if(s-v($l 22), $s-button-font-size, $n) if(s-v($l 23), $s-button-font-style, $n) if(s-v($l 24), $s-button-font-weight, $n) if(s-v($l 25), $s-button-color, $n) if(s-v($l 26), $s-button-letter-spacing, $n) if(s-v($l 27), $s-button-line-height, $n) if(s-v($l 28), $s-button-text-align, $n) if(s-v($l 29), $s-button-text-decoration, $n) if(s-v($l 30), $s-button-text-indent, $n) if(s-v($l 31), $s-button-text-shadow, $n) if(s-v($l 32), $s-button-text-transform, $n) if(s-v($l 33), $s-button-white-space, $n) if(s-v($l 34), $s-button-background, $n) if(s-v($l 35), $s-button-background-color, $n) if(s-v($l 36), $s-button-box-shadow, $n) if(s-v($l 37), $s-button-border, $n) if(s-v($l 38), $s-button-border-color, $n) if(s-v($l 39), $s-button-border-style, $n) if(s-v($l 40), $s-button-border-width, $n) if(s-v($l 41), $s-button-border-radius, $n) "" "" if(s-v($l 44), $s-button-transition, $n) if(s-v($l 45), $s-button-transform, $n) if(s-v($l 46), $s-button-animation, $n) if(s-v($l 47), $s-button-opacity, $n) if(s-v($l 48), $s-button-cursor, $n))
+  @else if $t == "button-custom"
+    $v: (if(s-v($l 1), $s-button-custom-position, $n) if(s-v($l 2), $s-button-custom-display, $n) if(s-v($l 3), $s-button-custom-visibility, $n) if(s-v($l 4), $s-button-custom-clear, $n) "" if(s-v($l 6), $s-button-custom-float, $n) if(s-v($l 7), $s-button-custom-width, $n) if(s-v($l 8), $s-button-custom-min-width, $n) if(s-v($l 9), $s-button-custom-max-width, $n) if(s-v($l 10), $s-button-custom-height, $n) if(s-v($l 11), $s-button-custom-min-height, $n) if(s-v($l 12), $s-button-custom-max-height, $n) if(s-v($l 13), $s-button-custom-margin, $n) if(s-v($l 14), $s-button-custom-padding, $n) if(s-v($l 15), $s-button-custom-overflow, $n) if(s-v($l 16), $s-button-custom-overflow-x, $n) if(s-v($l 17), $s-button-custom-overflow-y, $n) if(s-v($l 18), $s-button-custom-vertical-align, $n) "" if(s-v($l 20), $s-button-custom-font, $n) if(s-v($l 21), $s-button-custom-font-family, $n) if(s-v($l 22), $s-button-custom-font-size, $n) if(s-v($l 23), $s-button-custom-font-style, $n) if(s-v($l 24), $s-button-custom-font-weight, $n) if(s-v($l 25), $s-button-custom-color, $n) if(s-v($l 26), $s-button-custom-letter-spacing, $n) if(s-v($l 27), $s-button-custom-line-height, $n) if(s-v($l 28), $s-button-custom-text-align, $n) if(s-v($l 29), $s-button-custom-text-decoration, $n) if(s-v($l 30), $s-button-custom-text-indent, $n) if(s-v($l 31), $s-button-custom-text-shadow, $n) if(s-v($l 32), $s-button-custom-text-transform, $n) if(s-v($l 33), $s-button-custom-white-space, $n) if(s-v($l 34), $s-button-custom-background, $n) if(s-v($l 35), $s-button-custom-background-color, $n) if(s-v($l 36), $s-button-custom-box-shadow, $n) if(s-v($l 37), $s-button-custom-border, $n) if(s-v($l 38), $s-button-custom-border-color, $n) if(s-v($l 39), $s-button-custom-border-style, $n) if(s-v($l 40), $s-button-custom-border-width, $n) if(s-v($l 41), $s-button-custom-border-radius, $n) "" "" if(s-v($l 44), $s-button-custom-transition, $n) if(s-v($l 45), $s-button-custom-transform, $n) if(s-v($l 46), $s-button-custom-animation, $n) if(s-v($l 47), $s-button-custom-opacity, $n) if(s-v($l 48), $s-button-custom-cursor, $n))
+  @else if $t == "input"
+    $v: (if(s-v($l 1), $s-input-position, $n) if(s-v($l 2), $s-input-display, $n) if(s-v($l 3), $s-input-visibility, $n) if(s-v($l 4), $s-input-clear, $n) "" if(s-v($l 6), $s-input-float, $n) if(s-v($l 7), $s-input-width, $n) if(s-v($l 8), $s-input-min-width, $n) if(s-v($l 9), $s-input-max-width, $n) if(s-v($l 10), $s-input-height, $n) if(s-v($l 11), $s-input-min-height, $n) if(s-v($l 12), $s-input-max-height, $n) if(s-v($l 13), $s-input-margin, $n) if(s-v($l 14), $s-input-padding, $n) if(s-v($l 15), $s-input-overflow, $n) if(s-v($l 16), $s-input-overflow-x, $n) if(s-v($l 17), $s-input-overflow-y, $n) if(s-v($l 18), $s-input-vertical-align, $n) "" if(s-v($l 20), $s-input-font, $n) if(s-v($l 21), $s-input-font-family, $n) if(s-v($l 22), $s-input-font-size, $n) if(s-v($l 23), $s-input-font-style, $n) if(s-v($l 24), $s-input-font-weight, $n) if(s-v($l 25), $s-input-color, $n) if(s-v($l 26), $s-input-letter-spacing, $n) if(s-v($l 27), $s-input-line-height, $n) if(s-v($l 28), $s-input-text-align, $n) if(s-v($l 29), $s-input-text-decoration, $n) if(s-v($l 30), $s-input-text-indent, $n) if(s-v($l 31), $s-input-text-shadow, $n) if(s-v($l 32), $s-input-text-transform, $n) if(s-v($l 33), $s-input-white-space, $n) if(s-v($l 34), $s-input-background, $n) if(s-v($l 35), $s-input-background-color, $n) if(s-v($l 36), $s-input-box-shadow, $n) if(s-v($l 37), $s-input-border, $n) if(s-v($l 38), $s-input-border-color, $n) if(s-v($l 39), $s-input-border-style, $n) if(s-v($l 40), $s-input-border-width, $n) if(s-v($l 41), $s-input-border-radius, $n) "" "" if(s-v($l 44), $s-input-transition, $n) if(s-v($l 45), $s-input-transform, $n) if(s-v($l 46), $s-input-animation, $n) if(s-v($l 47), $s-input-opacity, $n) if(s-v($l 48), $s-input-cursor, $n))
+  @else if $t == "input-custom"
+    $v: (if(s-v($l 1), $s-input-custom-position, $n) if(s-v($l 2), $s-input-custom-display, $n) if(s-v($l 3), $s-input-custom-visibility, $n) if(s-v($l 4), $s-input-custom-clear, $n) "" if(s-v($l 6), $s-input-custom-float, $n) if(s-v($l 7), $s-input-custom-width, $n) if(s-v($l 8), $s-input-custom-min-width, $n) if(s-v($l 9), $s-input-custom-max-width, $n) if(s-v($l 10), $s-input-custom-height, $n) if(s-v($l 11), $s-input-custom-min-height, $n) if(s-v($l 12), $s-input-custom-max-height, $n) if(s-v($l 13), $s-input-custom-margin, $n) if(s-v($l 14), $s-input-custom-padding, $n) if(s-v($l 15), $s-input-custom-overflow, $n) if(s-v($l 16), $s-input-custom-overflow-x, $n) if(s-v($l 17), $s-input-custom-overflow-y, $n) if(s-v($l 18), $s-input-custom-vertical-align, $n) "" if(s-v($l 20), $s-input-custom-font, $n) if(s-v($l 21), $s-input-custom-font-family, $n) if(s-v($l 22), $s-input-custom-font-size, $n) if(s-v($l 23), $s-input-custom-font-style, $n) if(s-v($l 24), $s-input-custom-font-weight, $n) if(s-v($l 25), $s-input-custom-color, $n) if(s-v($l 26), $s-input-custom-letter-spacing, $n) if(s-v($l 27), $s-input-custom-line-height, $n) if(s-v($l 28), $s-input-custom-text-align, $n) if(s-v($l 29), $s-input-custom-text-decoration, $n) if(s-v($l 30), $s-input-custom-text-indent, $n) if(s-v($l 31), $s-input-custom-text-shadow, $n) if(s-v($l 32), $s-input-custom-text-transform, $n) if(s-v($l 33), $s-input-custom-white-space, $n) if(s-v($l 34), $s-input-custom-background, $n) if(s-v($l 35), $s-input-custom-background-color, $n) if(s-v($l 36), $s-input-custom-box-shadow, $n) if(s-v($l 37), $s-input-custom-border, $n) if(s-v($l 38), $s-input-custom-border-color, $n) if(s-v($l 39), $s-input-custom-border-style, $n) if(s-v($l 40), $s-input-custom-border-width, $n) if(s-v($l 41), $s-input-custom-border-radius, $n) "" "" if(s-v($l 44), $s-input-custom-transition, $n) if(s-v($l 45), $s-input-custom-transform, $n) if(s-v($l 46), $s-input-custom-animation, $n) if(s-v($l 47), $s-input-custom-opacity, $n) if(s-v($l 48), $s-input-custom-cursor, $n))
+  @else if $t == "input-choice"
+    $v: (if(s-v($l 1), $s-input-choice-position, $n) if(s-v($l 2), $s-input-choice-display, $n) if(s-v($l 3), $s-input-choice-visibility, $n) if(s-v($l 4), $s-input-choice-clear, $n) "" if(s-v($l 6), $s-input-choice-float, $n) if(s-v($l 7), $s-input-choice-width, $n) if(s-v($l 8), $s-input-choice-min-width, $n) if(s-v($l 9), $s-input-choice-max-width, $n) if(s-v($l 10), $s-input-choice-height, $n) if(s-v($l 11), $s-input-choice-min-height, $n) if(s-v($l 12), $s-input-choice-max-height, $n) if(s-v($l 13), $s-input-choice-margin, $n) if(s-v($l 14), $s-input-choice-padding, $n) if(s-v($l 15), $s-input-choice-overflow, $n) if(s-v($l 16), $s-input-choice-overflow-x, $n) if(s-v($l 17), $s-input-choice-overflow-y, $n) if(s-v($l 18), $s-input-choice-vertical-align, $n) "" if(s-v($l 20), $s-input-choice-font, $n) if(s-v($l 21), $s-input-choice-font-family, $n) if(s-v($l 22), $s-input-choice-font-size, $n) if(s-v($l 23), $s-input-choice-font-style, $n) if(s-v($l 24), $s-input-choice-font-weight, $n) if(s-v($l 25), $s-input-choice-color, $n) if(s-v($l 26), $s-input-choice-letter-spacing, $n) if(s-v($l 27), $s-input-choice-line-height, $n) if(s-v($l 28), $s-input-choice-text-align, $n) if(s-v($l 29), $s-input-choice-text-decoration, $n) if(s-v($l 30), $s-input-choice-text-indent, $n) if(s-v($l 31), $s-input-choice-text-shadow, $n) if(s-v($l 32), $s-input-choice-text-transform, $n) if(s-v($l 33), $s-input-choice-white-space, $n) if(s-v($l 34), $s-input-choice-background, $n) if(s-v($l 35), $s-input-choice-background-color, $n) if(s-v($l 36), $s-input-choice-box-shadow, $n) if(s-v($l 37), $s-input-choice-border, $n) if(s-v($l 38), $s-input-choice-border-color, $n) if(s-v($l 39), $s-input-choice-border-style, $n) if(s-v($l 40), $s-input-choice-border-width, $n) if(s-v($l 41), $s-input-choice-border-radius, $n) "" "" if(s-v($l 44), $s-input-choice-transition, $n) if(s-v($l 45), $s-input-choice-transform, $n) if(s-v($l 46), $s-input-choice-animation, $n) if(s-v($l 47), $s-input-choice-opacity, $n) if(s-v($l 48), $s-input-choice-cursor, $n))
+  @else if $t == "input-color"
+    $v: (if(s-v($l 1), $s-input-color-position, $n) if(s-v($l 2), $s-input-color-display, $n) if(s-v($l 3), $s-input-color-visibility, $n) if(s-v($l 4), $s-input-color-clear, $n) "" if(s-v($l 6), $s-input-color-float, $n) if(s-v($l 7), $s-input-color-width, $n) if(s-v($l 8), $s-input-color-min-width, $n) if(s-v($l 9), $s-input-color-max-width, $n) if(s-v($l 10), $s-input-color-height, $n) if(s-v($l 11), $s-input-color-min-height, $n) if(s-v($l 12), $s-input-color-max-height, $n) if(s-v($l 13), $s-input-color-margin, $n) if(s-v($l 14), $s-input-color-padding, $n) if(s-v($l 15), $s-input-color-overflow, $n) if(s-v($l 16), $s-input-color-overflow-x, $n) if(s-v($l 17), $s-input-color-overflow-y, $n) if(s-v($l 18), $s-input-color-vertical-align, $n) "" if(s-v($l 20), $s-input-color-font, $n) if(s-v($l 21), $s-input-color-font-family, $n) if(s-v($l 22), $s-input-color-font-size, $n) if(s-v($l 23), $s-input-color-font-style, $n) if(s-v($l 24), $s-input-color-font-weight, $n) if(s-v($l 25), $s-input-color-color, $n) if(s-v($l 26), $s-input-color-letter-spacing, $n) if(s-v($l 27), $s-input-color-line-height, $n) if(s-v($l 28), $s-input-color-text-align, $n) if(s-v($l 29), $s-input-color-text-decoration, $n) if(s-v($l 30), $s-input-color-text-indent, $n) if(s-v($l 31), $s-input-color-text-shadow, $n) if(s-v($l 32), $s-input-color-text-transform, $n) if(s-v($l 33), $s-input-color-white-space, $n) if(s-v($l 34), $s-input-color-background, $n) if(s-v($l 35), $s-input-color-background-color, $n) if(s-v($l 36), $s-input-color-box-shadow, $n) if(s-v($l 37), $s-input-color-border, $n) if(s-v($l 38), $s-input-color-border-color, $n) if(s-v($l 39), $s-input-color-border-style, $n) if(s-v($l 40), $s-input-color-border-width, $n) if(s-v($l 41), $s-input-color-border-radius, $n) "" "" if(s-v($l 44), $s-input-color-transition, $n) if(s-v($l 45), $s-input-color-transform, $n) if(s-v($l 46), $s-input-color-animation, $n) if(s-v($l 47), $s-input-color-opacity, $n) if(s-v($l 48), $s-input-color-cursor, $n))
+  @else if $t == "input-date"
+    $v: (if(s-v($l 1), $s-input-date-position, $n) if(s-v($l 2), $s-input-date-display, $n) if(s-v($l 3), $s-input-date-visibility, $n) if(s-v($l 4), $s-input-date-clear, $n) "" if(s-v($l 6), $s-input-date-float, $n) if(s-v($l 7), $s-input-date-width, $n) if(s-v($l 8), $s-input-date-min-width, $n) if(s-v($l 9), $s-input-date-max-width, $n) if(s-v($l 10), $s-input-date-height, $n) if(s-v($l 11), $s-input-date-min-height, $n) if(s-v($l 12), $s-input-date-max-height, $n) if(s-v($l 13), $s-input-date-margin, $n) if(s-v($l 14), $s-input-date-padding, $n) if(s-v($l 15), $s-input-date-overflow, $n) if(s-v($l 16), $s-input-date-overflow-x, $n) if(s-v($l 17), $s-input-date-overflow-y, $n) if(s-v($l 18), $s-input-date-vertical-align, $n) "" if(s-v($l 20), $s-input-date-font, $n) if(s-v($l 21), $s-input-date-font-family, $n) if(s-v($l 22), $s-input-date-font-size, $n) if(s-v($l 23), $s-input-date-font-style, $n) if(s-v($l 24), $s-input-date-font-weight, $n) if(s-v($l 25), $s-input-date-color, $n) if(s-v($l 26), $s-input-date-letter-spacing, $n) if(s-v($l 27), $s-input-date-line-height, $n) if(s-v($l 28), $s-input-date-text-align, $n) if(s-v($l 29), $s-input-date-text-decoration, $n) if(s-v($l 30), $s-input-date-text-indent, $n) if(s-v($l 31), $s-input-date-text-shadow, $n) if(s-v($l 32), $s-input-date-text-transform, $n) if(s-v($l 33), $s-input-date-white-space, $n) if(s-v($l 34), $s-input-date-background, $n) if(s-v($l 35), $s-input-date-background-color, $n) if(s-v($l 36), $s-input-date-box-shadow, $n) if(s-v($l 37), $s-input-date-border, $n) if(s-v($l 38), $s-input-date-border-color, $n) if(s-v($l 39), $s-input-date-border-style, $n) if(s-v($l 40), $s-input-date-border-width, $n) if(s-v($l 41), $s-input-date-border-radius, $n) "" "" if(s-v($l 44), $s-input-date-transition, $n) if(s-v($l 45), $s-input-date-transform, $n) if(s-v($l 46), $s-input-date-animation, $n) if(s-v($l 47), $s-input-date-opacity, $n) if(s-v($l 48), $s-input-date-cursor, $n))
+  @else if $t == "input-file"
+    $v: (if(s-v($l 1), $s-input-file-position, $n) if(s-v($l 2), $s-input-file-display, $n) if(s-v($l 3), $s-input-file-visibility, $n) if(s-v($l 4), $s-input-file-clear, $n) "" if(s-v($l 6), $s-input-file-float, $n) if(s-v($l 7), $s-input-file-width, $n) if(s-v($l 8), $s-input-file-min-width, $n) if(s-v($l 9), $s-input-file-max-width, $n) if(s-v($l 10), $s-input-file-height, $n) if(s-v($l 11), $s-input-file-min-height, $n) if(s-v($l 12), $s-input-file-max-height, $n) if(s-v($l 13), $s-input-file-margin, $n) if(s-v($l 14), $s-input-file-padding, $n) if(s-v($l 15), $s-input-file-overflow, $n) if(s-v($l 16), $s-input-file-overflow-x, $n) if(s-v($l 17), $s-input-file-overflow-y, $n) if(s-v($l 18), $s-input-file-vertical-align, $n) "" if(s-v($l 20), $s-input-file-font, $n) if(s-v($l 21), $s-input-file-font-family, $n) if(s-v($l 22), $s-input-file-font-size, $n) if(s-v($l 23), $s-input-file-font-style, $n) if(s-v($l 24), $s-input-file-font-weight, $n) if(s-v($l 25), $s-input-file-color, $n) if(s-v($l 26), $s-input-file-letter-spacing, $n) if(s-v($l 27), $s-input-file-line-height, $n) if(s-v($l 28), $s-input-file-text-align, $n) if(s-v($l 29), $s-input-file-text-decoration, $n) if(s-v($l 30), $s-input-file-text-indent, $n) if(s-v($l 31), $s-input-file-text-shadow, $n) if(s-v($l 32), $s-input-file-text-transform, $n) if(s-v($l 33), $s-input-file-white-space, $n) if(s-v($l 34), $s-input-file-background, $n) if(s-v($l 35), $s-input-file-background-color, $n) if(s-v($l 36), $s-input-file-box-shadow, $n) if(s-v($l 37), $s-input-file-border, $n) if(s-v($l 38), $s-input-file-border-color, $n) if(s-v($l 39), $s-input-file-border-style, $n) if(s-v($l 40), $s-input-file-border-width, $n) if(s-v($l 41), $s-input-file-border-radius, $n) "" "" if(s-v($l 44), $s-input-file-transition, $n) if(s-v($l 45), $s-input-file-transform, $n) if(s-v($l 46), $s-input-file-animation, $n) if(s-v($l 47), $s-input-file-opacity, $n) if(s-v($l 48), $s-input-file-cursor, $n))
+  @else if $t == "input-image"
+    $v: (if(s-v($l 1), $s-input-image-position, $n) if(s-v($l 2), $s-input-image-display, $n) if(s-v($l 3), $s-input-image-visibility, $n) if(s-v($l 4), $s-input-image-clear, $n) "" if(s-v($l 6), $s-input-image-float, $n) if(s-v($l 7), $s-input-image-width, $n) if(s-v($l 8), $s-input-image-min-width, $n) if(s-v($l 9), $s-input-image-max-width, $n) if(s-v($l 10), $s-input-image-height, $n) if(s-v($l 11), $s-input-image-min-height, $n) if(s-v($l 12), $s-input-image-max-height, $n) if(s-v($l 13), $s-input-image-margin, $n) if(s-v($l 14), $s-input-image-padding, $n) if(s-v($l 15), $s-input-image-overflow, $n) if(s-v($l 16), $s-input-image-overflow-x, $n) if(s-v($l 17), $s-input-image-overflow-y, $n) if(s-v($l 18), $s-input-image-vertical-align, $n) "" if(s-v($l 20), $s-input-image-font, $n) if(s-v($l 21), $s-input-image-font-family, $n) if(s-v($l 22), $s-input-image-font-size, $n) if(s-v($l 23), $s-input-image-font-style, $n) if(s-v($l 24), $s-input-image-font-weight, $n) if(s-v($l 25), $s-input-image-color, $n) if(s-v($l 26), $s-input-image-letter-spacing, $n) if(s-v($l 27), $s-input-image-line-height, $n) if(s-v($l 28), $s-input-image-text-align, $n) if(s-v($l 29), $s-input-image-text-decoration, $n) if(s-v($l 30), $s-input-image-text-indent, $n) if(s-v($l 31), $s-input-image-text-shadow, $n) if(s-v($l 32), $s-input-image-text-transform, $n) if(s-v($l 33), $s-input-image-white-space, $n) if(s-v($l 34), $s-input-image-background, $n) if(s-v($l 35), $s-input-image-background-color, $n) if(s-v($l 36), $s-input-image-box-shadow, $n) if(s-v($l 37), $s-input-image-border, $n) if(s-v($l 38), $s-input-image-border-color, $n) if(s-v($l 39), $s-input-image-border-style, $n) if(s-v($l 40), $s-input-image-border-width, $n) if(s-v($l 41), $s-input-image-border-radius, $n) "" "" if(s-v($l 44), $s-input-image-transition, $n) if(s-v($l 45), $s-input-image-transform, $n) if(s-v($l 46), $s-input-image-animation, $n) if(s-v($l 47), $s-input-image-opacity, $n) if(s-v($l 48), $s-input-image-cursor, $n))
+  @else if $t == "input-list"
+    $v: (if(s-v($l 1), $s-input-list-position, $n) if(s-v($l 2), $s-input-list-display, $n) if(s-v($l 3), $s-input-list-visibility, $n) if(s-v($l 4), $s-input-list-clear, $n) "" if(s-v($l 6), $s-input-list-float, $n) if(s-v($l 7), $s-input-list-width, $n) if(s-v($l 8), $s-input-list-min-width, $n) if(s-v($l 9), $s-input-list-max-width, $n) if(s-v($l 10), $s-input-list-height, $n) if(s-v($l 11), $s-input-list-min-height, $n) if(s-v($l 12), $s-input-list-max-height, $n) if(s-v($l 13), $s-input-list-margin, $n) if(s-v($l 14), $s-input-list-padding, $n) if(s-v($l 15), $s-input-list-overflow, $n) if(s-v($l 16), $s-input-list-overflow-x, $n) if(s-v($l 17), $s-input-list-overflow-y, $n) if(s-v($l 18), $s-input-list-vertical-align, $n) "" if(s-v($l 20), $s-input-list-font, $n) if(s-v($l 21), $s-input-list-font-family, $n) if(s-v($l 22), $s-input-list-font-size, $n) if(s-v($l 23), $s-input-list-font-style, $n) if(s-v($l 24), $s-input-list-font-weight, $n) if(s-v($l 25), $s-input-list-color, $n) if(s-v($l 26), $s-input-list-letter-spacing, $n) if(s-v($l 27), $s-input-list-line-height, $n) if(s-v($l 28), $s-input-list-text-align, $n) if(s-v($l 29), $s-input-list-text-decoration, $n) if(s-v($l 30), $s-input-list-text-indent, $n) if(s-v($l 31), $s-input-list-text-shadow, $n) if(s-v($l 32), $s-input-list-text-transform, $n) if(s-v($l 33), $s-input-list-white-space, $n) if(s-v($l 34), $s-input-list-background, $n) if(s-v($l 35), $s-input-list-background-color, $n) if(s-v($l 36), $s-input-list-box-shadow, $n) if(s-v($l 37), $s-input-list-border, $n) if(s-v($l 38), $s-input-list-border-color, $n) if(s-v($l 39), $s-input-list-border-style, $n) if(s-v($l 40), $s-input-list-border-width, $n) if(s-v($l 41), $s-input-list-border-radius, $n) "" "" if(s-v($l 44), $s-input-list-transition, $n) if(s-v($l 45), $s-input-list-transform, $n) if(s-v($l 46), $s-input-list-animation, $n) if(s-v($l 47), $s-input-list-opacity, $n) if(s-v($l 48), $s-input-list-cursor, $n))
+  @else if $t == "input-number"
+    $v: (if(s-v($l 1), $s-input-number-position, $n) if(s-v($l 2), $s-input-number-display, $n) if(s-v($l 3), $s-input-number-visibility, $n) if(s-v($l 4), $s-input-number-clear, $n) "" if(s-v($l 6), $s-input-number-float, $n) if(s-v($l 7), $s-input-number-width, $n) if(s-v($l 8), $s-input-number-min-width, $n) if(s-v($l 9), $s-input-number-max-width, $n) if(s-v($l 10), $s-input-number-height, $n) if(s-v($l 11), $s-input-number-min-height, $n) if(s-v($l 12), $s-input-number-max-height, $n) if(s-v($l 13), $s-input-number-margin, $n) if(s-v($l 14), $s-input-number-padding, $n) if(s-v($l 15), $s-input-number-overflow, $n) if(s-v($l 16), $s-input-number-overflow-x, $n) if(s-v($l 17), $s-input-number-overflow-y, $n) if(s-v($l 18), $s-input-number-vertical-align, $n) "" if(s-v($l 20), $s-input-number-font, $n) if(s-v($l 21), $s-input-number-font-family, $n) if(s-v($l 22), $s-input-number-font-size, $n) if(s-v($l 23), $s-input-number-font-style, $n) if(s-v($l 24), $s-input-number-font-weight, $n) if(s-v($l 25), $s-input-number-color, $n) if(s-v($l 26), $s-input-number-letter-spacing, $n) if(s-v($l 27), $s-input-number-line-height, $n) if(s-v($l 28), $s-input-number-text-align, $n) if(s-v($l 29), $s-input-number-text-decoration, $n) if(s-v($l 30), $s-input-number-text-indent, $n) if(s-v($l 31), $s-input-number-text-shadow, $n) if(s-v($l 32), $s-input-number-text-transform, $n) if(s-v($l 33), $s-input-number-white-space, $n) if(s-v($l 34), $s-input-number-background, $n) if(s-v($l 35), $s-input-number-background-color, $n) if(s-v($l 36), $s-input-number-box-shadow, $n) if(s-v($l 37), $s-input-number-border, $n) if(s-v($l 38), $s-input-number-border-color, $n) if(s-v($l 39), $s-input-number-border-style, $n) if(s-v($l 40), $s-input-number-border-width, $n) if(s-v($l 41), $s-input-number-border-radius, $n) "" "" if(s-v($l 44), $s-input-number-transition, $n) if(s-v($l 45), $s-input-number-transform, $n) if(s-v($l 46), $s-input-number-animation, $n) if(s-v($l 47), $s-input-number-opacity, $n) if(s-v($l 48), $s-input-number-cursor, $n))
+  @else if $t == "input-range"
+    $v: (if(s-v($l 1), $s-input-range-position, $n) if(s-v($l 2), $s-input-range-display, $n) if(s-v($l 3), $s-input-range-visibility, $n) if(s-v($l 4), $s-input-range-clear, $n) "" if(s-v($l 6), $s-input-range-float, $n) if(s-v($l 7), $s-input-range-width, $n) if(s-v($l 8), $s-input-range-min-width, $n) if(s-v($l 9), $s-input-range-max-width, $n) if(s-v($l 10), $s-input-range-height, $n) if(s-v($l 11), $s-input-range-min-height, $n) if(s-v($l 12), $s-input-range-max-height, $n) if(s-v($l 13), $s-input-range-margin, $n) if(s-v($l 14), $s-input-range-padding, $n) if(s-v($l 15), $s-input-range-overflow, $n) if(s-v($l 16), $s-input-range-overflow-x, $n) if(s-v($l 17), $s-input-range-overflow-y, $n) if(s-v($l 18), $s-input-range-vertical-align, $n) "" if(s-v($l 20), $s-input-range-font, $n) if(s-v($l 21), $s-input-range-font-family, $n) if(s-v($l 22), $s-input-range-font-size, $n) if(s-v($l 23), $s-input-range-font-style, $n) if(s-v($l 24), $s-input-range-font-weight, $n) if(s-v($l 25), $s-input-range-color, $n) if(s-v($l 26), $s-input-range-letter-spacing, $n) if(s-v($l 27), $s-input-range-line-height, $n) if(s-v($l 28), $s-input-range-text-align, $n) if(s-v($l 29), $s-input-range-text-decoration, $n) if(s-v($l 30), $s-input-range-text-indent, $n) if(s-v($l 31), $s-input-range-text-shadow, $n) if(s-v($l 32), $s-input-range-text-transform, $n) if(s-v($l 33), $s-input-range-white-space, $n) if(s-v($l 34), $s-input-range-background, $n) if(s-v($l 35), $s-input-range-background-color, $n) if(s-v($l 36), $s-input-range-box-shadow, $n) if(s-v($l 37), $s-input-range-border, $n) if(s-v($l 38), $s-input-range-border-color, $n) if(s-v($l 39), $s-input-range-border-style, $n) if(s-v($l 40), $s-input-range-border-width, $n) if(s-v($l 41), $s-input-range-border-radius, $n) "" "" if(s-v($l 44), $s-input-range-transition, $n) if(s-v($l 45), $s-input-range-transform, $n) if(s-v($l 46), $s-input-range-animation, $n) if(s-v($l 47), $s-input-range-opacity, $n) if(s-v($l 48), $s-input-range-cursor, $n))
+  @else if $t == "input-text"
+    $v: (if(s-v($l 1), $s-input-text-position, $n) if(s-v($l 2), $s-input-text-display, $n) if(s-v($l 3), $s-input-text-visibility, $n) if(s-v($l 4), $s-input-text-clear, $n) "" if(s-v($l 6), $s-input-text-float, $n) if(s-v($l 7), $s-input-text-width, $n) if(s-v($l 8), $s-input-text-min-width, $n) if(s-v($l 9), $s-input-text-max-width, $n) if(s-v($l 10), $s-input-text-height, $n) if(s-v($l 11), $s-input-text-min-height, $n) if(s-v($l 12), $s-input-text-max-height, $n) if(s-v($l 13), $s-input-text-margin, $n) if(s-v($l 14), $s-input-text-padding, $n) if(s-v($l 15), $s-input-text-overflow, $n) if(s-v($l 16), $s-input-text-overflow-x, $n) if(s-v($l 17), $s-input-text-overflow-y, $n) if(s-v($l 18), $s-input-text-vertical-align, $n) "" if(s-v($l 20), $s-input-text-font, $n) if(s-v($l 21), $s-input-text-font-family, $n) if(s-v($l 22), $s-input-text-font-size, $n) if(s-v($l 23), $s-input-text-font-style, $n) if(s-v($l 24), $s-input-text-font-weight, $n) if(s-v($l 25), $s-input-text-color, $n) if(s-v($l 26), $s-input-text-letter-spacing, $n) if(s-v($l 27), $s-input-text-line-height, $n) if(s-v($l 28), $s-input-text-text-align, $n) if(s-v($l 29), $s-input-text-text-decoration, $n) if(s-v($l 30), $s-input-text-text-indent, $n) if(s-v($l 31), $s-input-text-text-shadow, $n) if(s-v($l 32), $s-input-text-text-transform, $n) if(s-v($l 33), $s-input-text-white-space, $n) if(s-v($l 34), $s-input-text-background, $n) if(s-v($l 35), $s-input-text-background-color, $n) if(s-v($l 36), $s-input-text-box-shadow, $n) if(s-v($l 37), $s-input-text-border, $n) if(s-v($l 38), $s-input-text-border-color, $n) if(s-v($l 39), $s-input-text-border-style, $n) if(s-v($l 40), $s-input-text-border-width, $n) if(s-v($l 41), $s-input-text-border-radius, $n) "" "" if(s-v($l 44), $s-input-text-transition, $n) if(s-v($l 45), $s-input-text-transform, $n) if(s-v($l 46), $s-input-text-animation, $n) if(s-v($l 47), $s-input-text-opacity, $n) if(s-v($l 48), $s-input-text-cursor, $n))
+  @else if $t == "select"
+    $v: (if(s-v($l 1), $s-select-position, $n) if(s-v($l 2), $s-select-display, $n) if(s-v($l 3), $s-select-visibility, $n) if(s-v($l 4), $s-select-clear, $n) "" if(s-v($l 6), $s-select-float, $n) if(s-v($l 7), $s-select-width, $n) if(s-v($l 8), $s-select-min-width, $n) if(s-v($l 9), $s-select-max-width, $n) if(s-v($l 10), $s-select-height, $n) if(s-v($l 11), $s-select-min-height, $n) if(s-v($l 12), $s-select-max-height, $n) if(s-v($l 13), $s-select-margin, $n) if(s-v($l 14), $s-select-padding, $n) if(s-v($l 15), $s-select-overflow, $n) if(s-v($l 16), $s-select-overflow-x, $n) if(s-v($l 17), $s-select-overflow-y, $n) if(s-v($l 18), $s-select-vertical-align, $n) "" if(s-v($l 20), $s-select-font, $n) if(s-v($l 21), $s-select-font-family, $n) if(s-v($l 22), $s-select-font-size, $n) if(s-v($l 23), $s-select-font-style, $n) if(s-v($l 24), $s-select-font-weight, $n) if(s-v($l 25), $s-select-color, $n) if(s-v($l 26), $s-select-letter-spacing, $n) if(s-v($l 27), $s-select-line-height, $n) if(s-v($l 28), $s-select-text-align, $n) if(s-v($l 29), $s-select-text-decoration, $n) if(s-v($l 30), $s-select-text-indent, $n) if(s-v($l 31), $s-select-text-shadow, $n) if(s-v($l 32), $s-select-text-transform, $n) if(s-v($l 33), $s-select-white-space, $n) if(s-v($l 34), $s-select-background, $n) if(s-v($l 35), $s-select-background-color, $n) if(s-v($l 36), $s-select-box-shadow, $n) if(s-v($l 37), $s-select-border, $n) if(s-v($l 38), $s-select-border-color, $n) if(s-v($l 39), $s-select-border-style, $n) if(s-v($l 40), $s-select-border-width, $n) if(s-v($l 41), $s-select-border-radius, $n) "" "" if(s-v($l 44), $s-select-transition, $n) if(s-v($l 45), $s-select-transform, $n) if(s-v($l 46), $s-select-animation, $n) if(s-v($l 47), $s-select-opacity, $n) if(s-v($l 48), $s-select-cursor, $n))
+  @else if $t == "select-multiple"
+    $v: (if(s-v($l 1), $s-select-multiple-position, $n) if(s-v($l 2), $s-select-multiple-display, $n) if(s-v($l 3), $s-select-multiple-visibility, $n) if(s-v($l 4), $s-select-multiple-clear, $n) "" if(s-v($l 6), $s-select-multiple-float, $n) if(s-v($l 7), $s-select-multiple-width, $n) if(s-v($l 8), $s-select-multiple-min-width, $n) if(s-v($l 9), $s-select-multiple-max-width, $n) if(s-v($l 10), $s-select-multiple-height, $n) if(s-v($l 11), $s-select-multiple-min-height, $n) if(s-v($l 12), $s-select-multiple-max-height, $n) if(s-v($l 13), $s-select-multiple-margin, $n) if(s-v($l 14), $s-select-multiple-padding, $n) if(s-v($l 15), $s-select-multiple-overflow, $n) if(s-v($l 16), $s-select-multiple-overflow-x, $n) if(s-v($l 17), $s-select-multiple-overflow-y, $n) if(s-v($l 18), $s-select-multiple-vertical-align, $n) "" if(s-v($l 20), $s-select-multiple-font, $n) if(s-v($l 21), $s-select-multiple-font-family, $n) if(s-v($l 22), $s-select-multiple-font-size, $n) if(s-v($l 23), $s-select-multiple-font-style, $n) if(s-v($l 24), $s-select-multiple-font-weight, $n) if(s-v($l 25), $s-select-multiple-color, $n) if(s-v($l 26), $s-select-multiple-letter-spacing, $n) if(s-v($l 27), $s-select-multiple-line-height, $n) if(s-v($l 28), $s-select-multiple-text-align, $n) if(s-v($l 29), $s-select-multiple-text-decoration, $n) if(s-v($l 30), $s-select-multiple-text-indent, $n) if(s-v($l 31), $s-select-multiple-text-shadow, $n) if(s-v($l 32), $s-select-multiple-text-transform, $n) if(s-v($l 33), $s-select-multiple-white-space, $n) if(s-v($l 34), $s-select-multiple-background, $n) if(s-v($l 35), $s-select-multiple-background-color, $n) if(s-v($l 36), $s-select-multiple-box-shadow, $n) if(s-v($l 37), $s-select-multiple-border, $n) if(s-v($l 38), $s-select-multiple-border-color, $n) if(s-v($l 39), $s-select-multiple-border-style, $n) if(s-v($l 40), $s-select-multiple-border-width, $n) if(s-v($l 41), $s-select-multiple-border-radius, $n) "" "" if(s-v($l 44), $s-select-multiple-transition, $n) if(s-v($l 45), $s-select-multiple-transform, $n) if(s-v($l 46), $s-select-multiple-animation, $n) if(s-v($l 47), $s-select-multiple-opacity, $n) if(s-v($l 48), $s-select-multiple-cursor, $n))
+  @else if $t == "textarea"
+    $v: (if(s-v($l 1), $s-textarea-position, $n) if(s-v($l 2), $s-textarea-display, $n) if(s-v($l 3), $s-textarea-visibility, $n) if(s-v($l 4), $s-textarea-clear, $n) "" if(s-v($l 6), $s-textarea-float, $n) if(s-v($l 7), $s-textarea-width, $n) if(s-v($l 8), $s-textarea-min-width, $n) if(s-v($l 9), $s-textarea-max-width, $n) if(s-v($l 10), $s-textarea-height, $n) if(s-v($l 11), $s-textarea-min-height, $n) if(s-v($l 12), $s-textarea-max-height, $n) if(s-v($l 13), $s-textarea-margin, $n) if(s-v($l 14), $s-textarea-padding, $n) if(s-v($l 15), $s-textarea-overflow, $n) if(s-v($l 16), $s-textarea-overflow-x, $n) if(s-v($l 17), $s-textarea-overflow-y, $n) if(s-v($l 18), $s-textarea-vertical-align, $n) "" if(s-v($l 20), $s-textarea-font, $n) if(s-v($l 21), $s-textarea-font-family, $n) if(s-v($l 22), $s-textarea-font-size, $n) if(s-v($l 23), $s-textarea-font-style, $n) if(s-v($l 24), $s-textarea-font-weight, $n) if(s-v($l 25), $s-textarea-color, $n) if(s-v($l 26), $s-textarea-letter-spacing, $n) if(s-v($l 27), $s-textarea-line-height, $n) if(s-v($l 28), $s-textarea-text-align, $n) if(s-v($l 29), $s-textarea-text-decoration, $n) if(s-v($l 30), $s-textarea-text-indent, $n) if(s-v($l 31), $s-textarea-text-shadow, $n) if(s-v($l 32), $s-textarea-text-transform, $n) if(s-v($l 33), $s-textarea-white-space, $n) if(s-v($l 34), $s-textarea-background, $n) if(s-v($l 35), $s-textarea-background-color, $n) if(s-v($l 36), $s-textarea-box-shadow, $n) if(s-v($l 37), $s-textarea-border, $n) if(s-v($l 38), $s-textarea-border-color, $n) if(s-v($l 39), $s-textarea-border-style, $n) if(s-v($l 40), $s-textarea-border-width, $n) if(s-v($l 41), $s-textarea-border-radius, $n) "" "" if(s-v($l 44), $s-textarea-transition, $n) if(s-v($l 45), $s-textarea-transform, $n) if(s-v($l 46), $s-textarea-animation, $n) if(s-v($l 47), $s-textarea-opacity, $n) if(s-v($l 48), $s-textarea-cursor, $n))
+  @return $v
+
+
+// ==============================
+// OUPUT
+// ==============================
+
+// Lists conversion
+$s-tags-html5: s-list($s-tags-html5)
+$s-tags-reset: s-list($s-tags-reset)
+$s-tags-button: s-list($s-tags-button)
+$s-tags-button-custom: s-list($s-tags-button-custom)
+$s-tags-input: s-list($s-tags-input)
+$s-tags-input-html5: s-list($s-tags-input-html5)
+$s-tags-input-choice: s-list($s-tags-input-choice)
+$s-tags-input-color: s-list($s-tags-input-color)
+$s-tags-input-date: s-list($s-tags-input-date)
+$s-tags-input-file: s-list($s-tags-input-file)
+$s-tags-input-image: s-list($s-tags-input-image)
+$s-tags-input-list: s-list($s-tags-input-list)
+$s-tags-input-number: s-list($s-tags-input-number)
+$s-tags-input-range: s-list($s-tags-input-range)
+$s-tags-input-text: s-list($s-tags-input-text)
+$s-tags-input-custom: s-list($s-tags-input-custom)
+$s-tags-select: s-list($s-tags-select)
+$s-tags-select-multiple: s-list($s-tags-select-multiple)
+$s-tags-textarea: s-list($s-tags-textarea)
+
+// Output main CSS code
+@if $s-main == true
+  @include s-main()
+
+// Output CSS helper classes
+@if $s-helpers == true
+  @include s-helpers()
+
+    // Hide visually and from screen readers
+    .is-hidden
+      display: none !important
+
+    // Hide only visually, but have it available for screen readers
+    .is-hidden-visually
+      position: absolute
+      width: 1px
+      height: 1px
+      margin: -1px
+      padding: 0
+      clip: rect(0 0 0 0)
+      overflow: hidden
+      border: 0
+
+    // Hide visually and from screen readers, but maintain layout
+    .is-invisible
+      visibility: hidden
+
+    // Show previously hidden content
+    .is-shown
+      display: block !important
+    .is-visible
+      visibility: visible
+
+    // Quick floats
+    .pull-left
+      float: left !important
+    .pull-right
+      float: right !important
+
+    // Clearing floats
+    .clearfix
+      @include s-clearfix()
+
+    // Centering
+    .x-middle
+      display: block
+      margin: 0 auto
+    .y-middle
+      display: table-cell
+      vertical-align: middle
+
+// Output print CSS
+@if $s-print == true
+  @include s-print()
+    *, *:before, *:after, *:first-letter, *:first-line
+      color: #000 !important // Black prints faster
+      text-shadow: none !important
+      background: transparent !important
+      box-shadow: none !important
+
+    a, a:visited
+      text-decoration: underline
+
+    a[href]:after
+      content: " ("attr(href)")"
+
+    abbr[title]:after
+      content: " ("attr(title)")"
+
+    // Don't show links that are fragment identifiers
+    a[href^="javascript:"]:after, a[href^="#"]:after
+      content: ""
+
+    pre, blockquote
+      border: 1px solid #999
+      page-break-inside: avoid
+
+    // Printing tables
+    thead
+      display: table-header-group
+
+    tr, img
+      page-break-inside: avoid
+
+    img
+      max-width: 100% !important
+
+    p, h2, h3
+      orphans: 3
+      widows: 3
+
+    h2, h3
+      page-break-after: avoid
+
+    @page
+      margin: 0.5cm

@@ -1,0 +1,44 @@
+{
+  "name": "similize.css",
+  "version": "0.9.9",
+  "description": "Similize.css is an accurate, HTML5-ready and trouble-free CSS reset (Normalize.css alternative)",
+  "keywords": [
+    "css",
+    "reset",
+    "similize",
+    "normalize",
+    "cross-browser",
+    "browser",
+    "less",
+    "sass",
+    "scss",
+    "stylus",
+    "internet explorer",
+    "firefox",
+    "chrome",
+    "safari",
+    "yandex",
+    "opera",
+    "phone",
+    "mobile",
+    "tablet",
+    "ios",
+    "android",
+    "blackberry",
+    "windows phone"
+  ],
+  "homepage": "http://similize.fronteed.com/",
+  "bugs": {
+    "url": "https://github.com/fronteed/similize.css/issues",
+    "email": "hello@fronteed.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fronteed/similize.css.git"
+  },
+  "main": "similize.css",
+  "style": "similize.css",
+  "sass": "sass/similize.sass",
+  "author": "Damir Sultanov (http://fronteed.com)",
+  "license": "MIT"
+}

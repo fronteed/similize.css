@@ -1,0 +1,469 @@
+/*! similize.css v1.0.1 | MIT License | http://git.io/vfNuG */
+
+/* Set a more intuitive `border-box` layout model */
+html {
+  -moz-box-sizing: border-box
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box
+  box-sizing: inherit;
+}
+
+/* Reset default `margin` and `padding` */
+body,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+legend,
+p,
+blockquote,
+hr,
+th,
+td,
+button,
+input,
+select,
+textarea,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+
+  /* Stretch document's <body> to window `height` */
+  height: 100%;
+
+  /* Prevent iOS/IE text size adjustment after orientation change */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+
+  /* Stretch document's <body> to window `height` */
+  height: 100%;
+
+  /* Similize text styling across browsers */
+  font: 15px/1.4 sans-serif;
+  color: #000;
+
+  /* Prevent unexpected `background` on custom OS themes */
+  background: #fff;
+}
+
+/* Similize `display` property of the HTML5 elements */
+article,
+aside,
+main,
+section,
+details,
+summary,
+figure,
+figcaption,
+header,
+footer,
+nav,
+canvas,
+audio,
+video,
+progress {
+  display: block;
+}
+
+/* Prevent `audio` from displaying without controls */
+audio:not([controls]) {
+  display: none;
+}
+
+/* Correct overflow for IE 9-11 */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Prevent `[hidden]` and `template` from being displayed */
+[hidden],
+template {
+  display: none;
+}
+
+/* Improve readability on focused elements by removing `outline` */
+:active,
+:focus {
+  outline: none;
+}
+
+a {
+
+  /* Similize inconsistent links styling */
+  color: #00e;
+
+  /* Remove a gray `background` from active links in IE10 */
+  background-color: transparent;
+
+  /* Add `cursor` for links without `href` attribute */
+  cursor: pointer;
+
+  /* Unset gaps in links underline in iOS 8+ and Safari 8+ */
+  -webkit-text-decoration-skip: objects;
+}
+
+/* Correct styling present in IE 8-11, Safari and Chrome */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/* Similize styling across browsers */
+dfn,
+address {
+  font-style: normal;
+}
+
+ins {
+  text-decoration: none;
+}
+
+/* Correct a `bolder` style in Firefox 4+, Safari and Chrome */
+b,
+strong {
+  font-weight: bold;
+}
+
+/* Add the correct font style */
+em, i {
+  font-style: italic;
+}
+
+/* Similize inconsistent `font-size` across browsers */
+small {
+  font-size: 80%;
+}
+
+/* Add default styling for IE 8/9 */
+mark {
+  color: #000;
+  background: #ff0;
+}
+
+/* Prevent from affecting `line-height` across browsers */
+sub, sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Similize inconsistent styling */
+pre {
+  overflow: auto;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Correct inconsistent `font` styling */
+code,
+kbd,
+pre,
+samp {
+  font: 14px/1.4 monospace;
+}
+
+/* Remove inappropriate `border` */
+hr,
+img,
+fieldset,
+legend,
+iframe,
+object {
+  border: 0;
+}
+
+/* Unset `list-style` for the list elements */
+ol,
+ul {
+  list-style: none;
+}
+
+/* Similize inconsistent styling across browsers */
+hr {
+  height: 1px;
+  font: 0/0 none;
+  background: #000;
+}
+
+/* Prevent image overlapping outside the container */
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+table {
+
+  /* Expand table to full width of container */
+  width: 100%;
+
+  /* Remove spacing between table cells */
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Similize inconsistent styling */
+label {
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* Remove text clearing buttons inside form elements in IE10+ */
+::-ms-clear {
+  display: none;
+}
+
+/* Unset inner `padding` and `border` in Firefox 4+ */
+::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* Reset default `cursor` for disabled elements */
+button[disabled],
+input[disabled],
+select[disabled],
+textarea[disabled] {
+  cursor: default !important;
+}
+
+button {
+
+  /* Correct `overflow` in IE 8-11 */
+  overflow: visible;
+
+  /* Similize default alignment */
+  vertical-align: middle;
+  font: inherit;
+  line-height: normal;
+
+  /* Similize inconsistent `text-transform` inheritance */
+  text-transform: none;
+}
+
+button, input[type="button"], input[type="reset"], input[type="submit"] {
+
+  /* Set default styling */
+  padding: 5px;
+  background: #ddd;
+  border: 1px solid #ccc;
+  border-radius: 0;
+
+  /* Similize styling present across browsers */
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+input {
+
+  /* Similize default alignment */
+  vertical-align: middle;
+
+  /* Set default styling */
+  font: inherit;
+  line-height: normal;
+}
+
+input::-webkit-clear-button, input::-webkit-search-cancel-button, input::-webkit-search-decoration {
+  display: none;
+}
+
+input::-webkit-inner-spin-button {
+  display: none;
+}
+
+input::-webkit-datetime-edit-fields-wrapper, input::-webkit-calendar-picker-indicator {
+  padding: 0;
+}
+
+input[type="date"], input[type="datetime-local"], input[type="time"], input[type="month"], input[type="week"], input[type="text"], input[type="password"], input[type="email"], input[type="search"], input[type="tel"], input[type="url"], input[type="number"], input[type="range"], input[list] {
+  padding: 5px;
+  background: none;
+  border: 1px solid #ccc;
+}
+
+input[type="color"] {
+  border: none;
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  height: inherit;
+  border: 0;
+}
+
+input[type="date"], input[type="datetime-local"], input[type="time"], input[type="month"], input[type="week"] {
+  border-radius: 0;
+}
+
+input[type="file"] {
+  cursor: pointer;
+}
+
+input[type="number"] {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="search"], input[type="tel"], input[type="url"] {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+select {
+  padding: 5px;
+  vertical-align: middle;
+  font: inherit;
+  line-height: normal;
+  text-transform: none;
+  border: 1px solid #ccc;
+}
+
+select[multiple] {
+  height: auto;
+  vertical-align: top;
+}
+
+textarea {
+  padding: 5px;
+  overflow: auto;
+  vertical-align: top;
+  font: inherit;
+  line-height: normal;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  resize: vertical;
+  -webkit-appearance: none;
+}
+
+::placeholder {
+  color: #aaa;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+.is-hidden-visually {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  border: 0;
+}
+
+.is-invisible {
+  visibility: hidden;
+}
+
+.is-shown {
+  display: block !important;
+}
+
+.is-visible {
+  visibility: visible;
+}
+
+.pull-left {
+  float: left !important;
+}
+
+.pull-right {
+  float: right !important;
+}
+
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+@media print {
+  *, *:before, *:after, *:first-letter, *:first-line {
+    color: #000 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+  a, a:visited {
+    text-decoration: underline;
+  }
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+  a[href^="javascript:"]:after, a[href^="#"]:after {
+    content: "";
+  }
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  tr, img {
+    page-break-inside: avoid;
+  }
+  img {
+    max-width: 100% !important;
+  }
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+  h2, h3 {
+    page-break-after: avoid;
+  }
+  @page {
+    margin: 0.5cm;
+  }
+}
