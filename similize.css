@@ -2,14 +2,14 @@
 
 /* Set a more intuitive `border-box` layout model */
 html {
-  -moz-box-sizing: border-box
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-  -moz-box-sizing: border-box
+  -moz-box-sizing: border-box;
   box-sizing: inherit;
 }
 
@@ -91,6 +91,11 @@ progress {
 /* Prevent `audio` from displaying without controls */
 audio:not([controls]) {
   display: none;
+}
+
+/* Correct vertical alignment in Chromium browsers & Firefox */
+progress {
+	vertical-align: baseline;
 }
 
 /* Correct overflow for IE 9-11 */

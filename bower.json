@@ -1,7 +1,7 @@
 {
-  "name": "similize.css",
-  "version": "0.9.9",
-  "description": "Similize.css is an accurate, HTML5-ready and trouble-free CSS reset (Normalize.css alternative)",
+  "name": "Similize.css",
+  "version": "1.0.1",
+  "description": "Highly customizable, HTML5-ready and trouble-free CSS reset library",
   "main": "similize.css",
   "authors": [
     "Damir Sultanov (http://fronteed.com)"

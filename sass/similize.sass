@@ -717,6 +717,10 @@ $s-properties: (position display visibility clear list-style float width min-wid
       @if $s-legacy == true
         height: 0
 
+    // Correct vertical alignment in Chromium browsers & Firefox
+    progress
+      vertical-align: baseline
+
   // Correct overflow for IE 9-11
   svg:not(:root)
     overflow: hidden
